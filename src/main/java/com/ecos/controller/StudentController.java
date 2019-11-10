@@ -103,30 +103,6 @@ public class StudentController {
         return getStudentResponseEntity(student, studentData);
     }
 
-    @PutMapping("/students/{collegeId}")
-    public ResponseEntity<Student> updateStudentByCollegeId(@PathVariable("collegeId") int collegeId, @RequestBody Student student) {
-        System.out.println("Updating student with college ID: " + collegeId + "...");
-        Optional<Student> studentData = studentRepository.findByCollegeIdOptional(collegeId);
-
-        return getStudentResponseEntity(student, studentData);
-    }
-
-    @PutMapping("/students/{peselNumber}")
-    public ResponseEntity<Student> updateStudentByPeselNumber(@PathVariable("peselNumber") int peselNumber, @RequestBody Student student) {
-        System.out.println("Updating student PESEL number: " + peselNumber + "...");
-        Optional<Student> studentData = studentRepository.findByPeselNumberOptional(peselNumber);
-
-        return getStudentResponseEntity(student, studentData);
-    }
-
-    @PutMapping("/students/{fieldOfStudy}")
-    public ResponseEntity<Student> updateStudentByPeselNumber(@PathVariable("fieldOfStudy") String fieldOfStudy, @RequestBody Student student) {
-        System.out.println("Updating student with field of study: " + fieldOfStudy + "...");
-        Optional<Student> studentData = studentRepository.findByFieldOfStudyOptional(fieldOfStudy);
-
-        return getStudentResponseEntity(student, studentData);
-    }
-
     private ResponseEntity<Student> getStudentResponseEntity(@RequestBody Student student, Optional<Student> studentData) {
         if (studentData.isPresent()) {
             Student _student = studentData.get();
