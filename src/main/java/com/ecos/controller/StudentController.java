@@ -2,7 +2,7 @@ package com.ecos.controller;
 
 import com.ecos.model.Student;
 import com.ecos.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,18 +13,22 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api")
+@Slf4j
+@RequestMapping("/students")
 public class StudentController {
 
-    @Autowired
-    StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
 
-    @PostMapping("/students/create")
+    public StudentController(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+    @PostMapping("/create")
     public Student postStudent(@RequestBody Student student) {
         return studentRepository.save(new Student(student.getFirstName(), student.getLastName(), student.getPeselNumber(), student.getCollegeId(), student.getFieldOfStudy()));
     }
 
-    @DeleteMapping("/students/{id}")
+    @DeleteMapping("/delete/id/{id}")
     public ResponseEntity<String> deleteStudentById (@PathVariable("id") long id) {
         System.out.println("Deleting student ID: " + id + "...");
 
@@ -33,8 +37,8 @@ public class StudentController {
         return new ResponseEntity<>("Student has been deleted successfully", HttpStatus.OK);
     }
 
-    @DeleteMapping("/students/{peselNumber}")
-    public ResponseEntity<String> deleteStudentByPeselNumber (@PathVariable("peselNumber") int peselNumber) {
+    @DeleteMapping("/delete/peselNumber/{peselNumber}")
+    public ResponseEntity<String> deleteStudentByPeselNumber (@PathVariable("peselNumber") long peselNumber) {
         System.out.println("Deleting student with PESEL number: " + peselNumber + "...");
 
         studentRepository.deleteByPeselNumber(peselNumber);
@@ -42,7 +46,7 @@ public class StudentController {
         return new ResponseEntity<>("Student has been deleted successfully", HttpStatus.OK);
     }
 
-    @DeleteMapping("/students/{collegeId}")
+    @DeleteMapping("/delete/collegeId/{collegeId}")
     public ResponseEntity<String> deleteStudentByCollegeId (@PathVariable("collegeId") int collegeId) {
         System.out.println("Deleting student with college ID: " + collegeId + "...");
 
@@ -51,7 +55,7 @@ public class StudentController {
         return new ResponseEntity<>("Student has been deleted successfully", HttpStatus.OK);
     }
 
-    @DeleteMapping("/students/delete")
+    @DeleteMapping("/delete/all")
     public ResponseEntity<String> deleteAllStudents() {
         System.out.println("Deleting all students...");
 
@@ -60,7 +64,7 @@ public class StudentController {
         return new ResponseEntity<>("All students has been deleted successfully", HttpStatus.OK);
     }
 
-    @GetMapping("/students")
+    @GetMapping("/get/all")
     public List<Student> getAllStudents() {
         System.out.println("Getting all students...");
 
@@ -70,32 +74,32 @@ public class StudentController {
         return students;
     }
 
-    @GetMapping("students/peselNumber/{peselNumber}")
-    public List<Student> findByPeselNumber(@PathVariable int peselNumber) {
+    @GetMapping("/get/peselNumber/{peselNumber}")
+    public List<Student> findByPeselNumber(@PathVariable long peselNumber) {
         return studentRepository.findByPeselNumber(peselNumber);
     }
 
-    @GetMapping("students/collegeId/{collegeId}")
+    @GetMapping("s/get/collegeId/{collegeId}")
     public List<Student> findByCollegeId(@PathVariable int collegeId) {
         return studentRepository.findByCollegeId(collegeId);
     }
 
-    @GetMapping("students/firstName/{firstName}")
+    @GetMapping("/get/firstName/{firstName}")
     public List<Student> findByFirstName(@PathVariable String firstName) {
         return studentRepository.findByFirstName(firstName);
     }
 
-    @GetMapping("students/lastName/{lastName}")
+    @GetMapping("/get/lastName/{lastName}")
     public List<Student> findByLastName(@PathVariable String lastName) {
         return studentRepository.findByLastName(lastName);
     }
 
-    @GetMapping("students/fieldOfStudy/{fieldOfStudy}")
+    @GetMapping("/get/fieldOfStudy/{fieldOfStudy}")
     public List<Student> findByFieldOfStudy(@PathVariable String fieldOfStudy) {
         return studentRepository.findByFieldOfStudy(fieldOfStudy);
     }
 
-    @PutMapping("/students/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Student> updateStudentById(@PathVariable("id") long id, @RequestBody Student student) {
         System.out.println("Updating student ID: " + id + "...");
         Optional<Student> studentData = studentRepository.findById(id);

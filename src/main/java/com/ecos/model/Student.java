@@ -13,12 +13,14 @@ public class Student {
     @Column(columnDefinition = "VARCHAR(25) NOT NULL")
     private String lastName;
     @Column(nullable = false)
-    private int peselNumber;
+    private long peselNumber;
     @Column(nullable = false)
     private int collegeId;
     private String fieldOfStudy;
 
-    public Student(String firstName, String lastName, int peselNumber, int collegeId, String fieldOfStudy) {
+    public Student() {}
+
+    public Student(String firstName, String lastName, long peselNumber, int collegeId, String fieldOfStudy) {
         this.firstName = this.firstName;
         this.lastName = this.lastName;
         this.peselNumber = this.peselNumber;
@@ -50,11 +52,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public int getPeselNumber() {
+    public long getPeselNumber() {
         return peselNumber;
     }
 
-    public void setPeselNumber(int peselNumber) {
+    public void setPeselNumber(long peselNumber) {
         this.peselNumber = peselNumber;
     }
 
