@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name="Students")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(columnDefinition = "VARCHAR(25) NOT NULL")
     private String firstName;
@@ -15,6 +14,7 @@ public class Student {
     @Column(nullable = false)
     private long peselNumber;
     @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int collegeId;
     private String fieldOfStudy;
 
