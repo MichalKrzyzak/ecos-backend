@@ -26,6 +26,10 @@ public class StudentService {
         return students;
     }
 
+    public Optional<Student> getStudentById(long id) {
+        return studentRepository.findById(id);
+    }
+
     public ResponseEntity<String> deleteStudentById (@PathVariable("id") long id) {
         studentRepository.deleteById(id);
         return new ResponseEntity<>("Student has been deleted successfully", HttpStatus.OK);
@@ -56,5 +60,4 @@ public class StudentService {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }
