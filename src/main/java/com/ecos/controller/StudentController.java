@@ -1,59 +1,39 @@
 package com.ecos.controller;
 
 import com.ecos.model.Student;
-import com.ecos.repository.StudentRepository;
 import com.ecos.service.StudentService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@Slf4j
-@RequestMapping("/students")
-public class StudentController extends StudentService {
+public class StudentController  {
 
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
-    public StudentController(StudentRepository studentRepository) {
-        super(studentRepository);
-        this.studentRepository = studentRepository;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
-    @PostMapping()
+    @PostMapping("/students")
     public Student postStudent(@RequestBody Student student) {
-        return studentRepository.save(new Student(student.getFirstName(), student.getLastName(), student.getPeselNumber(), student.getCollegeId(), student.getFieldOfStudy()));
+        return studentService.createStudent(student);
     }
 
-    @DeleteMapping("/id/{id}")
+    @DeleteMapping("/students/id/{id}")
     public ResponseEntity<String> deleteStudentById (@PathVariable("id") long id) {
-        System.out.println("Deleting student ID: " + id + "...");
-
-        studentRepository.deleteById(id);
-
-        return new ResponseEntity<>("Student has been deleted successfully", HttpStatus.OK);
+        return studentService.deleteStudentById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/students")
     public List<Student> getAllStudents() {
-        System.out.println("Getting all students...");
-
-        List<Student> students = new ArrayList<>();
-        studentRepository.findAll().forEach(students::add);
-
-        return students;
+        return studentService.getAllStudents();
     }
 
-    @PutMapping("/id/{id}")
+    @PutMapping("/students/id/{id}")
     public ResponseEntity<Student> updateStudentById(@PathVariable("id") long id, @RequestBody Student student) {
-        System.out.println("Updating student ID: " + id + "...");
-        Optional<Student> studentData = studentRepository.findById(id);
-
-        return getStudentResponseEntity(student, studentData);
+        return studentService.updateStudentById(id, student);
     }
 }
