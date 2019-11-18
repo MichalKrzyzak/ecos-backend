@@ -3,9 +3,10 @@ package com.ecos.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Students")
+@Table(name = "Students")
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(columnDefinition = "VARCHAR(25) NOT NULL")
     private String firstName;
@@ -14,18 +15,20 @@ public class Student {
     @Column(nullable = false)
     private long peselNumber;
     @Column(nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int collegeId;
     private String fieldOfStudy;
+    private boolean isActive;
 
-    public Student() {}
+    public Student() {
+    }
 
-    public Student(String firstName, String lastName, long peselNumber, int collegeId, String fieldOfStudy) {
+    public Student(String firstName, String lastName, long peselNumber, int collegeId, String fieldOfStudy, boolean isActive) {
         this.firstName = this.firstName;
         this.lastName = this.lastName;
         this.peselNumber = this.peselNumber;
         this.collegeId = this.collegeId;
         this.fieldOfStudy = this.fieldOfStudy;
+        this.isActive = this.isActive;
     }
 
     public long getId() {
@@ -76,6 +79,14 @@ public class Student {
         this.fieldOfStudy = fieldOfStudy;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -85,6 +96,7 @@ public class Student {
                 ", peselNumber='" + peselNumber + '\'' +
                 ", collegeId='" + collegeId + '\'' +
                 ", fieldOfStudy='" + fieldOfStudy + '\'' +
+                ", isActive='" + isActive + '\'' +
                 '}';
     }
 }

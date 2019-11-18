@@ -2,6 +2,7 @@ package com.ecos.service;
 
 import com.ecos.model.Student;
 import com.ecos.repository.StudentRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class StudentService {
     private final StudentRepository studentRepository;
 
@@ -36,7 +38,7 @@ public class StudentService {
     }
 
     public Student createStudent(@RequestBody Student student) {
-        return studentRepository.save(new Student(student.getFirstName(), student.getLastName(), student.getPeselNumber(), student.getCollegeId(), student.getFieldOfStudy()));
+        return studentRepository.save(new Student(student.getFirstName(), student.getLastName(), student.getPeselNumber(), student.getCollegeId(), student.getFieldOfStudy(), student.isActive()));
     }
 
     public ResponseEntity<Student> updateStudentById(@PathVariable("id") long id, @RequestBody Student student) {
@@ -54,9 +56,11 @@ public class StudentService {
             _student.setPeselNumber(student.getPeselNumber());
             _student.setCollegeId(student.getCollegeId());
             _student.setFieldOfStudy(student.getFieldOfStudy());
-
+            _student.setActive(student.isActive());
+            log.info("Student found");
             return new ResponseEntity<>(studentRepository.save(_student), HttpStatus.OK);
         } else {
+            log.error("Student not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
