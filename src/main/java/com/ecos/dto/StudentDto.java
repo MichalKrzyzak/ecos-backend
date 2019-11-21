@@ -1,34 +1,24 @@
-package com.ecos.model;
+package com.ecos.dto;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "Students")
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class StudentDto {
     private long id;
-    @Column(columnDefinition = "VARCHAR(25) NOT NULL")
     private String firstName;
-    @Column(columnDefinition = "VARCHAR(25) NOT NULL")
     private String lastName;
-    @Column(nullable = false)
     private long peselNumber;
-    @Column(nullable = false)
     private int collegeId;
     private String fieldOfStudy;
     private boolean isActive;
 
-    public Student() {
+    public StudentDto() {
     }
 
-    public Student(String firstName, String lastName, long peselNumber, int collegeId, String fieldOfStudy, boolean isActive) {
-        this.firstName = this.firstName;
-        this.lastName = this.lastName;
-        this.peselNumber = this.peselNumber;
-        this.collegeId = this.collegeId;
-        this.fieldOfStudy = this.fieldOfStudy;
-        this.isActive = this.isActive;
+    public StudentDto(String firstName, String lastName, long peselNumber, int collegeId, String fieldOfStudy, boolean isActive) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.peselNumber = peselNumber;
+        this.collegeId = collegeId;
+        this.fieldOfStudy = fieldOfStudy;
+        this.isActive = isActive;
     }
 
     public long getId() {
