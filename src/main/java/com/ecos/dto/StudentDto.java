@@ -8,17 +8,19 @@ public class StudentDto {
     private int collegeId;
     private String fieldOfStudy;
     private boolean isActive;
+    private String yearOfStudy;
 
     public StudentDto() {
     }
 
-    public StudentDto(String firstName, String lastName, long peselNumber, int collegeId, String fieldOfStudy, boolean isActive) {
+    public StudentDto(String firstName, String lastName, long peselNumber, int collegeId, String fieldOfStudy, boolean isActive, String yearOfStudy) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
         this.collegeId = collegeId;
         this.fieldOfStudy = fieldOfStudy;
         this.isActive = isActive;
+        this.yearOfStudy = yearOfStudy;
     }
 
     public long getId() {
@@ -75,6 +77,14 @@ public class StudentDto {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public String getYearOfStudy() {
+        return yearOfStudy;
+    }
+
+    public void setYearOfStudy(String yearOfStudy) {
+        this.yearOfStudy = yearOfStudy;
     }
 
     @Override

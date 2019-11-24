@@ -46,7 +46,7 @@ public class StudentController {
 
     @PutMapping("/students/id/{id}")
     public ResponseEntity<StudentDto> updateStudentById(@PathVariable("id") long id, @RequestBody StudentDto studentDto) {
-        log.info("Updating student: " + id + "\nData: " + studentDto);
+        log.info("Updating student: " + id + "\nData: " + studentDto.toString());
         return studentService.updateStudentById(id, studentDto);
     }
 }

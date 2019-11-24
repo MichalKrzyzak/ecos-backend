@@ -45,11 +45,11 @@ public class StudentService implements BaseConverter<StudentEntity, StudentDto> 
 
     public StudentDto createStudent(@RequestBody StudentDto studentDto) {
         StudentEntity studentEntity = convertToEntity(studentDto);
-        return convertToDto(studentRepository.save(new StudentEntity(studentEntity.getFirstName(), studentEntity.getLastName(), studentEntity.getPeselNumber(), studentEntity.getCollegeId(), studentEntity.getFieldOfStudy(), studentEntity.isActive())));
+        return convertToDto(studentRepository.save(new StudentEntity(studentEntity.getFirstName(), studentEntity.getLastName(), studentEntity.getPeselNumber(), studentEntity.getCollegeId(), studentEntity.getFieldOfStudy(), studentEntity.isActive(), studentEntity.getYearOfStudy())));
     }
 
     public ResponseEntity<StudentDto> updateStudentById(@PathVariable("id") long id, @RequestBody StudentDto studentDto) {
-        System.out.println("Updating student ID: " + id + "...");
+        System.out.println("Updating student ID: " + id + "..." + studentDto.toString());
         StudentEntity studentEntity = convertToEntity(studentDto);
         Optional<StudentEntity> studentData = studentRepository.findById(id);
 
@@ -67,6 +67,7 @@ public class StudentService implements BaseConverter<StudentEntity, StudentDto> 
             _studentEntity.setCollegeId(studentEntity.getCollegeId());
             _studentEntity.setFieldOfStudy(studentEntity.getFieldOfStudy());
             _studentEntity.setActive(studentEntity.isActive());
+            _studentEntity.setYearOfStudy(studentEntity.getYearOfStudy());
 
             StudentDto studentDto = convertToDto(studentRepository.save(_studentEntity));
 
@@ -88,6 +89,7 @@ public class StudentService implements BaseConverter<StudentEntity, StudentDto> 
         studentDto.setPeselNumber(studentEntity.getPeselNumber());
         studentDto.setCollegeId(studentEntity.getCollegeId());
         studentDto.setActive(studentEntity.isActive());
+        studentDto.setYearOfStudy(studentEntity.getYearOfStudy());
         return studentDto;
     }
 
@@ -101,6 +103,7 @@ public class StudentService implements BaseConverter<StudentEntity, StudentDto> 
         studentEntity.setPeselNumber(studentDto.getPeselNumber());
         studentEntity.setCollegeId(studentDto.getCollegeId());
         studentEntity.setActive(studentDto.isActive());
+        studentEntity.setYearOfStudy(studentDto.getYearOfStudy());
         return studentEntity;
     }
 }
