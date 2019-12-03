@@ -3,7 +3,7 @@ package com.ecos.service;
 import com.ecos.common.BaseConverter;
 import com.ecos.dto.StudentDto;
 import com.ecos.model.StudentEntity;
-import com.ecos.repository.StudentRepository;
+import com.ecos.repository.EcosRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +19,14 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class StudentService implements BaseConverter<StudentEntity, StudentDto> {
-    private final StudentRepository studentRepository;
+    private final EcosRepository ecosRepository;
 
-    public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public StudentService(EcosRepository ecosRepository) {
+        this.ecosRepository = ecosRepository;
     }
 
     public List<StudentDto> getAllStudents() {
-        List<StudentEntity> studentEntities = new ArrayList<>(studentRepository.findAll());
+        List<StudentEntity> studentEntities = new ArrayList<>(ecosRepository.findAll());
 
         return studentEntities.stream()
                 .map(this::convertToDto)
@@ -34,24 +34,24 @@ public class StudentService implements BaseConverter<StudentEntity, StudentDto> 
     }
 
     public Optional<StudentDto> getStudentById(long id) {
-        Optional<StudentEntity> studentEntity = studentRepository.findById(id);
+        Optional<StudentEntity> studentEntity = ecosRepository.findById(id);
         return studentEntity.map(this::convertToDto);
     }
 
     public ResponseEntity<String> deleteStudentById(@PathVariable("id") long id) {
-        studentRepository.deleteById(id);
+        ecosRepository.deleteById(id);
         return new ResponseEntity<>("Student has been deleted successfully", HttpStatus.OK);
     }
 
     public StudentDto createStudent(@RequestBody StudentDto studentDto) {
         StudentEntity studentEntity = convertToEntity(studentDto);
-        return convertToDto(studentRepository.save(new StudentEntity(studentEntity.getFirstName(), studentEntity.getLastName(), studentEntity.getPeselNumber(), studentEntity.getCollegeId(), studentEntity.getFieldOfStudy(), studentEntity.isActive(), studentEntity.getYearOfStudy())));
+        return convertToDto(ecosRepository.save(new StudentEntity(studentEntity.getFirstName(), studentEntity.getLastName(), studentEntity.getPeselNumber(), studentEntity.getCollegeId(), studentEntity.getFieldOfStudy(), studentEntity.isActive(), studentEntity.getYearOfStudy())));
     }
 
     public ResponseEntity<StudentDto> updateStudentById(@PathVariable("id") long id, @RequestBody StudentDto studentDto) {
         System.out.println("Updating student ID: " + id + "..." + studentDto.toString());
         StudentEntity studentEntity = convertToEntity(studentDto);
-        Optional<StudentEntity> studentData = studentRepository.findById(id);
+        Optional<StudentEntity> studentData = ecosRepository.findById(id);
 
         return getStudentResponseEntity(studentEntity, studentData);
     }
@@ -69,7 +69,7 @@ public class StudentService implements BaseConverter<StudentEntity, StudentDto> 
             _studentEntity.setActive(studentEntity.isActive());
             _studentEntity.setYearOfStudy(studentEntity.getYearOfStudy());
 
-            StudentDto studentDto = convertToDto(studentRepository.save(_studentEntity));
+            StudentDto studentDto = convertToDto(ecosRepository.save(_studentEntity));
 
             return new ResponseEntity<>(studentDto, HttpStatus.OK);
         } else {

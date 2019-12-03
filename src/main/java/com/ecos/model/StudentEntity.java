@@ -14,9 +14,10 @@ public class StudentEntity {
     private String lastName;
     @Column(nullable = false)
     private long peselNumber;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "COLLEGE_ID")
     private int collegeId;
-    private String fieldOfStudy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private FieldOfStudyEntity fieldOfStudyEntity;
     private boolean isActive;
 
     private String yearOfStudy;
@@ -24,12 +25,12 @@ public class StudentEntity {
     public StudentEntity() {
     }
 
-    public StudentEntity(String firstName, String lastName, long peselNumber, int collegeId, String fieldOfStudy, boolean isActive, String yearOfStudy) {
+    public StudentEntity(String firstName, String lastName, long peselNumber, int collegeId, FieldOfStudyEntity fieldOfStudy, boolean isActive, String yearOfStudy) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
         this.collegeId = collegeId;
-        this.fieldOfStudy = fieldOfStudy;
+        this.fieldOfStudyEntity = fieldOfStudy;
         this.isActive = isActive;
         this.yearOfStudy = yearOfStudy;
     }
@@ -74,12 +75,12 @@ public class StudentEntity {
         this.collegeId = collegeId;
     }
 
-    public String getFieldOfStudy() {
-        return fieldOfStudy;
+    public FieldOfStudyEntity getFieldOfStudy() {
+        return fieldOfStudyEntity;
     }
 
-    public void setFieldOfStudy(String fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
+    public void setFieldOfStudy(FieldOfStudyEntity fieldOfStudy) {
+        this.fieldOfStudyEntity = fieldOfStudy;
     }
 
     public boolean isActive() {
@@ -106,7 +107,7 @@ public class StudentEntity {
                 ", lastName='" + lastName + '\'' +
                 ", peselNumber='" + peselNumber + '\'' +
                 ", collegeId='" + collegeId + '\'' +
-                ", fieldOfStudy='" + fieldOfStudy + '\'' +
+                ", fieldOfStudy='" + fieldOfStudyEntity + '\'' +
                 ", isActive='" + isActive + '\'' +
                 '}';
     }

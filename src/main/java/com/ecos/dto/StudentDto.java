@@ -6,19 +6,19 @@ public class StudentDto {
     private String lastName;
     private long peselNumber;
     private int collegeId;
-    private String fieldOfStudy;
+    private FieldOfStudyDto fieldOfStudyDto;
     private boolean isActive;
     private String yearOfStudy;
 
     public StudentDto() {
     }
 
-    public StudentDto(String firstName, String lastName, long peselNumber, int collegeId, String fieldOfStudy, boolean isActive, String yearOfStudy) {
+    public StudentDto(String firstName, String lastName, long peselNumber, int collegeId, FieldOfStudyDto fieldOfStudy, boolean isActive, String yearOfStudy) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
         this.collegeId = collegeId;
-        this.fieldOfStudy = fieldOfStudy;
+        this.fieldOfStudyDto = fieldOfStudy;
         this.isActive = isActive;
         this.yearOfStudy = yearOfStudy;
     }
@@ -63,12 +63,12 @@ public class StudentDto {
         this.collegeId = collegeId;
     }
 
-    public String getFieldOfStudy() {
-        return fieldOfStudy;
+    public FieldOfStudyDto getFieldOfStudy() {
+        return fieldOfStudyDto;
     }
 
-    public void setFieldOfStudy(String fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
+    public void setFieldOfStudy(FieldOfStudyDto fieldOfStudy) {
+        this.fieldOfStudyDto = fieldOfStudy;
     }
 
     public boolean isActive() {
@@ -95,7 +95,7 @@ public class StudentDto {
                 ", lastName='" + lastName + '\'' +
                 ", peselNumber='" + peselNumber + '\'' +
                 ", collegeId='" + collegeId + '\'' +
-                ", fieldOfStudy='" + fieldOfStudy + '\'' +
+                ", fieldOfStudy='" + fieldOfStudyDto + '\'' +
                 ", isActive='" + isActive + '\'' +
                 '}';
     }
