@@ -45,7 +45,7 @@ public class TeacherService implements BaseConverter<TeacherEntity, TeacherDto> 
 
     public TeacherDto createTeacher(@RequestBody TeacherDto teacherDto) {
         TeacherEntity teacher = convertToEntity(teacherDto);
-        return convertToDto(teacherRepository.save(new TeacherEntity(teacher.getFirstName(), teacher.getLastName(), teacher.getPeselNumber(), teacher.getCollegeId(), teacher.getFieldOfStudy(), teacher.isActive(), teacher.getYearOfStudy())));
+        return convertToDto(teacherRepository.save(new TeacherEntity(teacher.getFirstName(), teacher.getLastName(), teacher.getPeselNumber(), teacher.getTeacherRole(), teacher.getFieldOfStudy())));
     }
 
     public ResponseEntity<TeacherDto> updateTeacherById(@PathVariable("id") long id, @RequestBody TeacherDto teacherDto) {

@@ -15,9 +15,13 @@ import java.util.stream.Collectors;
 @Slf4j
 public class FieldOfStudyService implements BaseConverter<FieldOfStudyEntity, FieldOfStudyDto> {
     private final FieldOfStudyRepository fieldOfStudyRepository;
+    private final StudentService studentService;
+    private final TeacherService teacherService;
 
-    public FieldOfStudyService(FieldOfStudyRepository fieldOfStudyRepository) {
+    public FieldOfStudyService(FieldOfStudyRepository fieldOfStudyRepository, StudentService studentService, TeacherService teacherService) {
         this.fieldOfStudyRepository = fieldOfStudyRepository;
+        this.studentService = studentService;
+        this.teacherService = teacherService;
     }
 
     public List<FieldOfStudyDto> getAllFieldsOfStudy() {
@@ -33,8 +37,12 @@ public class FieldOfStudyService implements BaseConverter<FieldOfStudyEntity, Fi
         FieldOfStudyDto fieldOfStudyDto = new FieldOfStudyDto();
         fieldOfStudyDto.setId(fieldOfStudyEntity.getId());
         fieldOfStudyDto.setFieldOfStudy(fieldOfStudyEntity.getFieldOfStudy());
-        fieldOfStudyDto.setStudents(fieldOfStudyEntity.getStudents());
-        fieldOfStudyDto.setTeachers(fieldOfStudyEntity.getTeachers());
+        fieldOfStudyDto.setStudents(fieldOfStudyEntity.getStudents().stream()
+                .map(studentService::convertToDto)
+                .collect(Collectors.toSet()));
+        fieldOfStudyDto.setTeachers(fieldOfStudyEntity.getTeachers().stream()
+                .map(teacherService::convertToDto)
+                .collect(Collectors.toSet()));
         return fieldOfStudyDto;
     }
 
@@ -43,8 +51,12 @@ public class FieldOfStudyService implements BaseConverter<FieldOfStudyEntity, Fi
         FieldOfStudyEntity fieldOfStudyEntity = new FieldOfStudyEntity();
         fieldOfStudyEntity.setId(fieldOfStudyDto.getId());
         fieldOfStudyEntity.setFieldOfStudy(fieldOfStudyDto.getFieldOfStudy());
-        fieldOfStudyEntity.setStudents(fieldOfStudyDto.getStudents());
-        fieldOfStudyEntity.setTeachers(fieldOfStudyDto.getTeachers());
+        fieldOfStudyEntity.setStudents(fieldOfStudyDto.getStudents().stream()
+                .map(studentService::convertToEntity)
+                .collect(Collectors.toSet()));
+        fieldOfStudyEntity.setTeachers(fieldOfStudyDto.getTeachers().stream()
+                .map(teacherService::convertToEntity)
+                .collect(Collectors.toSet()));
         return fieldOfStudyEntity;
     }
 }

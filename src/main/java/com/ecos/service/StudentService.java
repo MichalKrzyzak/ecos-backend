@@ -1,7 +1,9 @@
 package com.ecos.service;
 
 import com.ecos.common.BaseConverter;
+import com.ecos.dto.FieldOfStudyDto;
 import com.ecos.dto.StudentDto;
+import com.ecos.model.FieldOfStudyEntity;
 import com.ecos.model.StudentEntity;
 import com.ecos.repository.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +22,11 @@ import java.util.stream.Collectors;
 @Slf4j
 public class StudentService implements BaseConverter<StudentEntity, StudentDto> {
     private final StudentRepository studentRepository;
+    private final FieldOfStudyService fieldOfStudyService;
 
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(StudentRepository studentRepository, FieldOfStudyService fieldOfStudyService) {
         this.studentRepository = studentRepository;
+        this.fieldOfStudyService = fieldOfStudyService;
     }
 
     public List<StudentDto> getAllStudents() {
@@ -81,11 +85,13 @@ public class StudentService implements BaseConverter<StudentEntity, StudentDto> 
 
     @Override
     public StudentDto convertToDto(StudentEntity studentEntity) {
+        FieldOfStudyDto fieldOfStudyDto = fieldOfStudyService.convertToDto(studentEntity.getFieldOfStudy());
+
         StudentDto studentDto = new StudentDto();
         studentDto.setId(studentEntity.getId());
         studentDto.setFirstName(studentEntity.getFirstName());
         studentDto.setLastName(studentEntity.getLastName());
-        studentDto.setFieldOfStudy(studentEntity.getFieldOfStudy());
+        studentDto.setFieldOfStudy(fieldOfStudyDto);
         studentDto.setPeselNumber(studentEntity.getPeselNumber());
         studentDto.setCollegeId(studentEntity.getCollegeId());
         studentDto.setActive(studentEntity.isActive());
@@ -95,11 +101,13 @@ public class StudentService implements BaseConverter<StudentEntity, StudentDto> 
 
     @Override
     public StudentEntity convertToEntity(StudentDto studentDto) {
+        FieldOfStudyEntity fieldOfStudyEntity = fieldOfStudyService.convertToEntity(studentDto.getFieldOfStudy());
+
         StudentEntity studentEntity = new StudentEntity();
         studentEntity.setId(studentDto.getId());
         studentEntity.setFirstName(studentDto.getFirstName());
         studentEntity.setLastName(studentDto.getLastName());
-        studentEntity.setFieldOfStudy(studentDto.getFieldOfStudy());
+        studentEntity.setFieldOfStudy(fieldOfStudyEntity);
         studentEntity.setPeselNumber(studentDto.getPeselNumber());
         studentEntity.setCollegeId(studentDto.getCollegeId());
         studentEntity.setActive(studentDto.isActive());
