@@ -3,7 +3,7 @@ package com.ecos.service;
 import com.ecos.common.BaseConverter;
 import com.ecos.dto.FieldOfStudyDto;
 import com.ecos.model.FieldOfStudyEntity;
-import com.ecos.repository.EcosRepository;
+import com.ecos.repository.FieldOfStudyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class FieldOfStudyService implements BaseConverter<FieldOfStudyEntity, FieldOfStudyDto> {
-    private final EcosRepository ecosRepository;
+    private final FieldOfStudyRepository fieldOfStudyRepository;
 
-    public FieldOfStudyService(EcosRepository ecosRepository) {
-        this.ecosRepository = ecosRepository;
+    public FieldOfStudyService(FieldOfStudyRepository fieldOfStudyRepository) {
+        this.fieldOfStudyRepository = fieldOfStudyRepository;
     }
 
     public List<FieldOfStudyDto> getAllFieldsOfStudy() {
-        List<FieldOfStudyEntity> fieldOfStudyEntities = new ArrayList<>(ecosRepository.findAll());
+        List<FieldOfStudyEntity> fieldOfStudyEntities = new ArrayList<FieldOfStudyEntity>(fieldOfStudyRepository.findAll());
 
         return fieldOfStudyEntities.stream()
                 .map(this::convertToDto)
@@ -34,6 +34,7 @@ public class FieldOfStudyService implements BaseConverter<FieldOfStudyEntity, Fi
         fieldOfStudyDto.setId(fieldOfStudyEntity.getId());
         fieldOfStudyDto.setFieldOfStudy(fieldOfStudyEntity.getFieldOfStudy());
         fieldOfStudyDto.setStudents(fieldOfStudyEntity.getStudents());
+        fieldOfStudyDto.setTeachers(fieldOfStudyEntity.getTeachers());
         return fieldOfStudyDto;
     }
 
@@ -43,6 +44,7 @@ public class FieldOfStudyService implements BaseConverter<FieldOfStudyEntity, Fi
         fieldOfStudyEntity.setId(fieldOfStudyDto.getId());
         fieldOfStudyEntity.setFieldOfStudy(fieldOfStudyDto.getFieldOfStudy());
         fieldOfStudyEntity.setStudents(fieldOfStudyDto.getStudents());
+        fieldOfStudyEntity.setTeachers(fieldOfStudyDto.getTeachers());
         return fieldOfStudyEntity;
     }
 }

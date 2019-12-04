@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "FieldsOfStudy")
+@Table(name = "Fields Of Study")
 public class FieldOfStudyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,9 @@ public class FieldOfStudyEntity {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "COLLEGE_ID")
     private Set<StudentEntity> students;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "TEACHER_ID")
+    private Set<TeacherEntity> teachers;
 
     public FieldOfStudyEntity() {
     }
@@ -49,12 +52,21 @@ public class FieldOfStudyEntity {
         this.students = students;
     }
 
+    public Set<TeacherEntity> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<TeacherEntity> teachers) {
+        this.teachers = teachers;
+    }
+
     @Override
     public String toString() {
         return "FieldOfStudyEntity{" +
                 "id=" + id +
                 ", fieldOfStudy=" + fieldOfStudyEnum +
                 ", students=" + students +
+                ", teachers=" + teachers +
                 '}';
     }
 }

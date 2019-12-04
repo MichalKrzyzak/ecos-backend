@@ -8,6 +8,7 @@ public class FieldOfStudyDto {
     private long id;
     private FieldOfStudyEnum fieldOfStudyEnum;
     private Set<StudentDto> students;
+    private Set<TeacherDto> teachers;
 
     public FieldOfStudyDto() {
     }
@@ -40,6 +41,14 @@ public class FieldOfStudyDto {
 
     public void setStudents(Set<StudentDto> students) {
         this.students = students;
+    }
+
+    public Set<TeacherDto> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<TeacherDto> teachers) {
+        this.teachers = teachers;
     }
 
     @Override
