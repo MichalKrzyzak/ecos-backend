@@ -1,7 +1,9 @@
 package com.ecos.service;
 
 import com.ecos.common.BaseConverter;
+import com.ecos.dto.FieldOfStudyDto;
 import com.ecos.dto.TeacherDto;
+import com.ecos.model.FieldOfStudyEntity;
 import com.ecos.model.TeacherEntity;
 import com.ecos.repository.TeacherRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +22,11 @@ import java.util.stream.Collectors;
 @Slf4j
 public class TeacherService implements BaseConverter<TeacherEntity, TeacherDto> {
     private final TeacherRepository teacherRepository;
+    private final FieldOfStudyService fieldOfStudyService;
 
-    public TeacherService(TeacherRepository teacherRepository) {
+    public TeacherService(TeacherRepository teacherRepository, FieldOfStudyService fieldOfStudyService) {
         this.teacherRepository = teacherRepository;
+        this.fieldOfStudyService = fieldOfStudyService;
     }
 
     public List<TeacherDto> getAllTeachers() {
@@ -79,26 +83,30 @@ public class TeacherService implements BaseConverter<TeacherEntity, TeacherDto> 
 
     @Override
     public TeacherDto convertToDto(TeacherEntity teacherEntity) {
+        FieldOfStudyDto fieldOfStudyDto = fieldOfStudyService.convertToDto(teacherEntity.getFieldOfStudy());
+
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setId(teacherEntity.getId());
         teacherDto.setFirstName(teacherEntity.getFirstName());
         teacherDto.setLastName(teacherEntity.getLastName());
         teacherDto.setPeselNumber(teacherEntity.getPeselNumber());
         teacherDto.setTeacherRole(teacherEntity.getTeacherRole());
-        teacherDto.setFieldOfStudy(teacherEntity.getFieldOfStudy());
+        teacherDto.setFieldOfStudy(fieldOfStudyDto);
         teacherDto.setActive(teacherEntity.isActive());
         return teacherDto;
     }
 
     @Override
     public TeacherEntity convertToEntity(TeacherDto teacherDto) {
+        FieldOfStudyEntity fieldOfStudyEntity = fieldOfStudyService.convertToEntity(teacherDto.getFieldOfStudy());
+
         TeacherEntity teacherEntity = new TeacherEntity();
         teacherEntity.setId(teacherDto.getId());
         teacherEntity.setFirstName(teacherDto.getFirstName());
         teacherEntity.setLastName(teacherDto.getLastName());
         teacherEntity.setPeselNumber(teacherDto.getPeselNumber());
         teacherEntity.setTeacherRole(teacherDto.getTeacherRole());
-        teacherEntity.setFieldOfStudy(teacherDto.getFieldOfStudy());
+        teacherEntity.setFieldOfStudy(fieldOfStudyEntity);
         teacherEntity.setActive(teacherDto.isActive());
         return teacherEntity;
     }

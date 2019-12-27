@@ -1,22 +1,20 @@
 package com.ecos.dto;
 
-import com.ecos.model.enums.FieldOfStudyEnum;
-
-import java.util.Set;
+import java.util.List;
 
 public class FieldOfStudyDto {
     private long id;
-    private FieldOfStudyEnum fieldOfStudyEnum;
-    private Set<StudentDto> students;
-    private Set<TeacherDto> teachers;
+    private String fieldOfStudy;
+    private List<StudentDto> students;
+    private List<TeacherDto> teachers;
 
     public FieldOfStudyDto() {
     }
 
-    public FieldOfStudyDto(long id, FieldOfStudyEnum fieldOfStudy, Set<StudentDto> students) {
+    public FieldOfStudyDto(long id, List<StudentDto> students, List<TeacherDto> teachers) {
         this.id = id;
-        this.fieldOfStudyEnum = fieldOfStudy;
         this.students = students;
+        this.teachers = teachers;
     }
 
     public long getId() {
@@ -27,27 +25,27 @@ public class FieldOfStudyDto {
         this.id = id;
     }
 
-    public FieldOfStudyEnum getFieldOfStudy() {
-        return fieldOfStudyEnum;
+    public String getFieldOfStudy() {
+        return fieldOfStudy;
     }
 
-    public void setFieldOfStudy(FieldOfStudyEnum fieldOfStudy) {
-        this.fieldOfStudyEnum = fieldOfStudy;
+    public void setFieldOfStudy(String fieldOfStudy) {
+        this.fieldOfStudy = fieldOfStudy;
     }
 
-    public Set<StudentDto> getStudents() {
+    public List<StudentDto> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<StudentDto> students) {
+    public void setStudents(List<StudentDto> students) {
         this.students = students;
     }
 
-    public Set<TeacherDto> getTeachers() {
+    public List<TeacherDto> getTeachers() {
         return teachers;
     }
 
-    public void setTeachers(Set<TeacherDto> teachers) {
+    public void setTeachers(List<TeacherDto> teachers) {
         this.teachers = teachers;
     }
 
@@ -55,7 +53,7 @@ public class FieldOfStudyDto {
     public String toString() {
         return "FieldOfStudyDto{" +
                 "id=" + id +
-                ", fieldOfStudy=" + fieldOfStudyEnum +
+                ", fieldOfStudy=" + fieldOfStudy +
                 ", students=" + students +
                 '}';
     }

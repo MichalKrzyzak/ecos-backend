@@ -1,6 +1,5 @@
 package com.ecos.dto;
 
-import com.ecos.model.FieldOfStudyEntity;
 import com.ecos.model.enums.TeacherRoleEnum;
 
 public class TeacherDto {
@@ -9,19 +8,18 @@ public class TeacherDto {
     private String lastName;
     private long peselNumber;
     private boolean isActive;
-    private TeacherRoleEnum teacherRole;
-    private FieldOfStudyEntity fieldOfStudy;
+    private String teacherRole;
+    private FieldOfStudyDto fieldOfStudy;
 
     public TeacherDto() {
     }
 
-    public TeacherDto(long id, String firstName, String lastName, long peselNumber, boolean isActive, TeacherRoleEnum teacherRole, FieldOfStudyEntity fieldOfStudy) {
+    public TeacherDto(long id, String firstName, String lastName, long peselNumber, boolean isActive, FieldOfStudyDto fieldOfStudy) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
         this.isActive = isActive;
-        this.teacherRole = teacherRole;
         this.fieldOfStudy = fieldOfStudy;
     }
 
@@ -65,19 +63,19 @@ public class TeacherDto {
         isActive = active;
     }
 
-    public TeacherRoleEnum getTeacherRole() {
+    public String getTeacherRole() {
         return teacherRole;
     }
 
-    public void setTeacherRole(TeacherRoleEnum teacherRole) {
+    public void setTeacherRole(String teacherRole) {
         this.teacherRole = teacherRole;
     }
 
-    public FieldOfStudyEntity getFieldOfStudy() {
+    public FieldOfStudyDto getFieldOfStudy() {
         return fieldOfStudy;
     }
 
-    public void setFieldOfStudy(FieldOfStudyEntity fieldOfStudy) {
+    public void setFieldOfStudy(FieldOfStudyDto fieldOfStudy) {
         this.fieldOfStudy = fieldOfStudy;
     }
 

@@ -18,19 +18,21 @@ public class TeacherEntity {
     private long peselNumber;
     @Column(nullable = false)
     private boolean isActive;
-    @Enumerated(EnumType.STRING)
-    private TeacherRoleEnum teacherRole;
+    private String teacherRole;
     @ManyToOne
     private FieldOfStudyEntity fieldOfStudy;
 
     public TeacherEntity() {
+
     }
 
-    public TeacherEntity(String firstName, String lastName, long peselNumber, TeacherRoleEnum teacherRole, FieldOfStudyEntity fieldOfStudy) {
+    public TeacherEntity(String firstName, String lastName, long peselNumber, String teacherRole, FieldOfStudyEntity fieldOfStudy) {
+    }
+
+    public TeacherEntity(String firstName, String lastName, long peselNumber, FieldOfStudyEntity fieldOfStudy) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
-        this.teacherRole = teacherRole;
         this.fieldOfStudy = fieldOfStudy;
     }
 
@@ -66,11 +68,11 @@ public class TeacherEntity {
         this.peselNumber = peselNumber;
     }
 
-    public TeacherRoleEnum getTeacherRole() {
+    public String getTeacherRole() {
         return teacherRole;
     }
 
-    public void setTeacherRole(TeacherRoleEnum teacherRole) {
+    public void setTeacherRole(String teacherRole) {
         this.teacherRole = teacherRole;
     }
 

@@ -39,10 +39,10 @@ public class FieldOfStudyService implements BaseConverter<FieldOfStudyEntity, Fi
         fieldOfStudyDto.setFieldOfStudy(fieldOfStudyEntity.getFieldOfStudy());
         fieldOfStudyDto.setStudents(fieldOfStudyEntity.getStudents().stream()
                 .map(studentService::convertToDto)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toList()));
         fieldOfStudyDto.setTeachers(fieldOfStudyEntity.getTeachers().stream()
                 .map(teacherService::convertToDto)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toList()));
         return fieldOfStudyDto;
     }
 
@@ -53,10 +53,10 @@ public class FieldOfStudyService implements BaseConverter<FieldOfStudyEntity, Fi
         fieldOfStudyEntity.setFieldOfStudy(fieldOfStudyDto.getFieldOfStudy());
         fieldOfStudyEntity.setStudents(fieldOfStudyDto.getStudents().stream()
                 .map(studentService::convertToEntity)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toList()));
         fieldOfStudyEntity.setTeachers(fieldOfStudyDto.getTeachers().stream()
                 .map(teacherService::convertToEntity)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toList()));
         return fieldOfStudyEntity;
     }
 }
