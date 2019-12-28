@@ -1,9 +1,7 @@
 package com.ecos.service;
 
-import com.ecos.common.BaseConverter;
-import com.ecos.dto.FieldOfStudyDto;
+import com.ecos.common.TeacherConverter;
 import com.ecos.dto.TeacherDto;
-import com.ecos.model.FieldOfStudyEntity;
 import com.ecos.model.TeacherEntity;
 import com.ecos.repository.TeacherRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,26 +18,26 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class TeacherService implements BaseConverter<TeacherEntity, TeacherDto> {
+public class TeacherService {
     private final TeacherRepository teacherRepository;
-    private final FieldOfStudyService fieldOfStudyService;
+    private final TeacherConverter teacherConverter;
 
-    public TeacherService(TeacherRepository teacherRepository, FieldOfStudyService fieldOfStudyService) {
+    public TeacherService(TeacherRepository teacherRepository, TeacherConverter teacherConverter) {
         this.teacherRepository = teacherRepository;
-        this.fieldOfStudyService = fieldOfStudyService;
+        this.teacherConverter = teacherConverter;
     }
 
     public List<TeacherDto> getAllTeachers() {
         List<TeacherEntity> teachers = new ArrayList<>(teacherRepository.findAll());
 
         return teachers.stream()
-                .map(this::convertToDto)
+                .map(teacherConverter::convertToDto)
                 .collect(Collectors.toList());
     }
 
     public Optional<TeacherDto> getTeacherById(long id) {
         Optional<TeacherEntity> teacher = teacherRepository.findById(id);
-        return teacher.map(this::convertToDto);
+        return teacher.map(teacherConverter::convertToDto);
     }
 
     public ResponseEntity<String> deleteTeacherById(@PathVariable("id") long id) {
@@ -48,13 +46,13 @@ public class TeacherService implements BaseConverter<TeacherEntity, TeacherDto> 
     }
 
     public TeacherDto createTeacher(@RequestBody TeacherDto teacherDto) {
-        TeacherEntity teacher = convertToEntity(teacherDto);
-        return convertToDto(teacherRepository.save(new TeacherEntity(teacher.getFirstName(), teacher.getLastName(), teacher.getPeselNumber(), teacher.getTeacherRole(), teacher.getFieldOfStudy())));
+        TeacherEntity teacher = teacherConverter.convertToEntity(teacherDto);
+        return teacherConverter.convertToDto(teacherRepository.save(new TeacherEntity(teacher.getFirstName(), teacher.getLastName(), teacher.getPeselNumber(), teacher.isActive(), teacher.getTeacherRole())));
     }
 
     public ResponseEntity<TeacherDto> updateTeacherById(@PathVariable("id") long id, @RequestBody TeacherDto teacherDto) {
         System.out.println("Updating teacher ID: " + id + "..." + teacherDto.toString());
-        TeacherEntity teacherEntity = convertToEntity(teacherDto);
+        TeacherEntity teacherEntity = teacherConverter.convertToEntity(teacherDto);
         Optional<TeacherEntity> teacherData = teacherRepository.findById(id);
 
         return getTeacherResponseEntity(teacherEntity, teacherData);
@@ -68,10 +66,9 @@ public class TeacherService implements BaseConverter<TeacherEntity, TeacherDto> 
             _teacherEntity.setFirstName(teacherEntity.getFirstName());
             _teacherEntity.setLastName(teacherEntity.getLastName());
             _teacherEntity.setPeselNumber(teacherEntity.getPeselNumber());
-            _teacherEntity.setFieldOfStudy(teacherEntity.getFieldOfStudy());
             _teacherEntity.setActive(teacherEntity.isActive());
 
-            TeacherDto teacherDto = convertToDto(teacherRepository.save(_teacherEntity));
+            TeacherDto teacherDto = teacherConverter.convertToDto(teacherRepository.save(_teacherEntity));
 
             return new ResponseEntity<>(teacherDto, HttpStatus.OK);
         } else {
@@ -79,35 +76,5 @@ public class TeacherService implements BaseConverter<TeacherEntity, TeacherDto> 
 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
-
-    @Override
-    public TeacherDto convertToDto(TeacherEntity teacherEntity) {
-        FieldOfStudyDto fieldOfStudyDto = fieldOfStudyService.convertToDto(teacherEntity.getFieldOfStudy());
-
-        TeacherDto teacherDto = new TeacherDto();
-        teacherDto.setId(teacherEntity.getId());
-        teacherDto.setFirstName(teacherEntity.getFirstName());
-        teacherDto.setLastName(teacherEntity.getLastName());
-        teacherDto.setPeselNumber(teacherEntity.getPeselNumber());
-        teacherDto.setTeacherRole(teacherEntity.getTeacherRole());
-        teacherDto.setFieldOfStudy(fieldOfStudyDto);
-        teacherDto.setActive(teacherEntity.isActive());
-        return teacherDto;
-    }
-
-    @Override
-    public TeacherEntity convertToEntity(TeacherDto teacherDto) {
-        FieldOfStudyEntity fieldOfStudyEntity = fieldOfStudyService.convertToEntity(teacherDto.getFieldOfStudy());
-
-        TeacherEntity teacherEntity = new TeacherEntity();
-        teacherEntity.setId(teacherDto.getId());
-        teacherEntity.setFirstName(teacherDto.getFirstName());
-        teacherEntity.setLastName(teacherDto.getLastName());
-        teacherEntity.setPeselNumber(teacherDto.getPeselNumber());
-        teacherEntity.setTeacherRole(teacherDto.getTeacherRole());
-        teacherEntity.setFieldOfStudy(fieldOfStudyEntity);
-        teacherEntity.setActive(teacherDto.isActive());
-        return teacherEntity;
     }
 }

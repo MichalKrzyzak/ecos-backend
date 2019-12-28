@@ -3,9 +3,7 @@ package com.ecos.controller;
 import com.ecos.dto.FieldOfStudyDto;
 import com.ecos.service.FieldOfStudyService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +23,12 @@ public class FieldOfStudyController {
         log.info("Fetching all fields of study...");
 
         return fieldOfStudyService.getAllFieldsOfStudy();
+    }
+
+    @PostMapping("/fieldOfStudy")
+    public FieldOfStudyDto addFieldOfStudy (@RequestBody FieldOfStudyDto fieldOfStudyDto) {
+        log.info("Creating new field of study...");
+        return fieldOfStudyService.createFieldOfStudy(fieldOfStudyDto);
     }
 
 }

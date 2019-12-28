@@ -6,21 +6,18 @@ public class StudentDto {
     private String lastName;
     private long peselNumber;
     private int collegeId;
-    private FieldOfStudyDto fieldOfStudyDto;
     private boolean isActive;
-    private String yearOfStudy;
 
     public StudentDto() {
     }
 
-    public StudentDto(String firstName, String lastName, long peselNumber, int collegeId, FieldOfStudyDto fieldOfStudy, boolean isActive, String yearOfStudy) {
+    public StudentDto(long id, String firstName, String lastName, long peselNumber, int collegeId, boolean isActive) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
         this.collegeId = collegeId;
-        this.fieldOfStudyDto = fieldOfStudy;
         this.isActive = isActive;
-        this.yearOfStudy = yearOfStudy;
     }
 
     public long getId() {
@@ -63,14 +60,6 @@ public class StudentDto {
         this.collegeId = collegeId;
     }
 
-    public FieldOfStudyDto getFieldOfStudy() {
-        return fieldOfStudyDto;
-    }
-
-    public void setFieldOfStudy(FieldOfStudyDto fieldOfStudy) {
-        this.fieldOfStudyDto = fieldOfStudy;
-    }
-
     public boolean isActive() {
         return isActive;
     }
@@ -79,24 +68,15 @@ public class StudentDto {
         isActive = active;
     }
 
-    public String getYearOfStudy() {
-        return yearOfStudy;
-    }
-
-    public void setYearOfStudy(String yearOfStudy) {
-        this.yearOfStudy = yearOfStudy;
-    }
-
     @Override
     public String toString() {
-        return "Student{" +
+        return "StudentDto{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", peselNumber='" + peselNumber + '\'' +
-                ", collegeId='" + collegeId + '\'' +
-                ", fieldOfStudy='" + fieldOfStudyDto + '\'' +
-                ", isActive='" + isActive + '\'' +
+                ", peselNumber=" + peselNumber +
+                ", collegeId=" + collegeId +
+                ", isActive=" + isActive +
                 '}';
     }
 }

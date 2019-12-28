@@ -1,11 +1,14 @@
 package com.ecos.service;
 
-import com.ecos.common.BaseConverter;
+import com.ecos.common.FieldOfStudyConverter;
 import com.ecos.dto.FieldOfStudyDto;
+import com.ecos.dto.StudentDto;
+import com.ecos.dto.TeacherDto;
 import com.ecos.model.FieldOfStudyEntity;
 import com.ecos.repository.FieldOfStudyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,50 +16,25 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class FieldOfStudyService implements BaseConverter<FieldOfStudyEntity, FieldOfStudyDto> {
+public class FieldOfStudyService {
     private final FieldOfStudyRepository fieldOfStudyRepository;
-    private final StudentService studentService;
-    private final TeacherService teacherService;
+    private final FieldOfStudyConverter fieldOfStudyConverter;
 
-    public FieldOfStudyService(FieldOfStudyRepository fieldOfStudyRepository, StudentService studentService, TeacherService teacherService) {
+    public FieldOfStudyService(FieldOfStudyRepository fieldOfStudyRepository, FieldOfStudyConverter fieldOfStudyConverter) {
         this.fieldOfStudyRepository = fieldOfStudyRepository;
-        this.studentService = studentService;
-        this.teacherService = teacherService;
+        this.fieldOfStudyConverter = fieldOfStudyConverter;
     }
 
     public List<FieldOfStudyDto> getAllFieldsOfStudy() {
-        List<FieldOfStudyEntity> fieldOfStudyEntities = new ArrayList<FieldOfStudyEntity>(fieldOfStudyRepository.findAll());
+        List<FieldOfStudyEntity> fieldOfStudyEntities = new ArrayList<>(fieldOfStudyRepository.findAll());
 
         return fieldOfStudyEntities.stream()
-                .map(this::convertToDto)
+                .map(fieldOfStudyConverter::convertToDto)
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public FieldOfStudyDto convertToDto(FieldOfStudyEntity fieldOfStudyEntity) {
-        FieldOfStudyDto fieldOfStudyDto = new FieldOfStudyDto();
-        fieldOfStudyDto.setId(fieldOfStudyEntity.getId());
-        fieldOfStudyDto.setFieldOfStudy(fieldOfStudyEntity.getFieldOfStudy());
-        fieldOfStudyDto.setStudents(fieldOfStudyEntity.getStudents().stream()
-                .map(studentService::convertToDto)
-                .collect(Collectors.toList()));
-        fieldOfStudyDto.setTeachers(fieldOfStudyEntity.getTeachers().stream()
-                .map(teacherService::convertToDto)
-                .collect(Collectors.toList()));
-        return fieldOfStudyDto;
-    }
-
-    @Override
-    public FieldOfStudyEntity convertToEntity(FieldOfStudyDto fieldOfStudyDto) {
-        FieldOfStudyEntity fieldOfStudyEntity = new FieldOfStudyEntity();
-        fieldOfStudyEntity.setId(fieldOfStudyDto.getId());
-        fieldOfStudyEntity.setFieldOfStudy(fieldOfStudyDto.getFieldOfStudy());
-        fieldOfStudyEntity.setStudents(fieldOfStudyDto.getStudents().stream()
-                .map(studentService::convertToEntity)
-                .collect(Collectors.toList()));
-        fieldOfStudyEntity.setTeachers(fieldOfStudyDto.getTeachers().stream()
-                .map(teacherService::convertToEntity)
-                .collect(Collectors.toList()));
-        return fieldOfStudyEntity;
+    public FieldOfStudyDto createFieldOfStudy(@RequestBody FieldOfStudyDto fieldOfStudyDto) {
+        FieldOfStudyEntity fieldOfStudy = fieldOfStudyConverter.convertToEntity(fieldOfStudyDto);
+        return fieldOfStudyConverter.convertToDto(fieldOfStudyRepository.save(new FieldOfStudyEntity(fieldOfStudy.getFieldOfStudy(), fieldOfStudy.getStudents(), fieldOfStudy.getTeachers())));
     }
 }

@@ -1,7 +1,5 @@
 package com.ecos.dto;
 
-import com.ecos.model.enums.TeacherRoleEnum;
-
 public class TeacherDto {
     private long id;
     private String firstName;
@@ -9,18 +7,17 @@ public class TeacherDto {
     private long peselNumber;
     private boolean isActive;
     private String teacherRole;
-    private FieldOfStudyDto fieldOfStudy;
 
     public TeacherDto() {
     }
 
-    public TeacherDto(long id, String firstName, String lastName, long peselNumber, boolean isActive, FieldOfStudyDto fieldOfStudy) {
+    public TeacherDto(long id, String firstName, String lastName, long peselNumber, boolean isActive, String teacherRole) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
         this.isActive = isActive;
-        this.fieldOfStudy = fieldOfStudy;
+        this.teacherRole = teacherRole;
     }
 
     public long getId() {
@@ -71,14 +68,6 @@ public class TeacherDto {
         this.teacherRole = teacherRole;
     }
 
-    public FieldOfStudyDto getFieldOfStudy() {
-        return fieldOfStudy;
-    }
-
-    public void setFieldOfStudy(FieldOfStudyDto fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
-    }
-
     @Override
     public String toString() {
         return "TeacherDto{" +
@@ -87,8 +76,7 @@ public class TeacherDto {
                 ", lastName='" + lastName + '\'' +
                 ", peselNumber=" + peselNumber +
                 ", isActive=" + isActive +
-                ", teacherRole=" + teacherRole +
-                ", fieldOfStudy=" + fieldOfStudy +
+                ", teacherRole='" + teacherRole + '\'' +
                 '}';
     }
 }

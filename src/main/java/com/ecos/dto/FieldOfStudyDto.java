@@ -11,8 +11,9 @@ public class FieldOfStudyDto {
     public FieldOfStudyDto() {
     }
 
-    public FieldOfStudyDto(long id, List<StudentDto> students, List<TeacherDto> teachers) {
+    public FieldOfStudyDto(long id, String fieldOfStudy, List<StudentDto> students, List<TeacherDto> teachers) {
         this.id = id;
+        this.fieldOfStudy = fieldOfStudy;
         this.students = students;
         this.teachers = teachers;
     }
@@ -53,8 +54,9 @@ public class FieldOfStudyDto {
     public String toString() {
         return "FieldOfStudyDto{" +
                 "id=" + id +
-                ", fieldOfStudy=" + fieldOfStudy +
+                ", fieldOfStudy='" + fieldOfStudy + '\'' +
                 ", students=" + students +
+                ", teachers=" + teachers +
                 '}';
     }
 }

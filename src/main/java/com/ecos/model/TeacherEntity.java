@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class TeacherEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "TEACHER_ID")
     private long id;
     @Column(columnDefinition = "VARCHAR(25) NOT NULL")
     private String firstName;
@@ -19,21 +20,17 @@ public class TeacherEntity {
     @Column(nullable = false)
     private boolean isActive;
     private String teacherRole;
-    @ManyToOne
-    private FieldOfStudyEntity fieldOfStudy;
 
     public TeacherEntity() {
 
     }
 
-    public TeacherEntity(String firstName, String lastName, long peselNumber, String teacherRole, FieldOfStudyEntity fieldOfStudy) {
-    }
-
-    public TeacherEntity(String firstName, String lastName, long peselNumber, FieldOfStudyEntity fieldOfStudy) {
+    public TeacherEntity(String firstName, String lastName, long peselNumber, boolean isActive, String teacherRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
-        this.fieldOfStudy = fieldOfStudy;
+        this.isActive = isActive;
+        this.teacherRole = teacherRole;
     }
 
     public long getId() {
@@ -68,28 +65,20 @@ public class TeacherEntity {
         this.peselNumber = peselNumber;
     }
 
-    public String getTeacherRole() {
-        return teacherRole;
-    }
-
-    public void setTeacherRole(String teacherRole) {
-        this.teacherRole = teacherRole;
-    }
-
-    public FieldOfStudyEntity getFieldOfStudy() {
-        return fieldOfStudy;
-    }
-
-    public void setFieldOfStudy(FieldOfStudyEntity fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
-    }
-
     public boolean isActive() {
         return isActive;
     }
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public String getTeacherRole() {
+        return teacherRole;
+    }
+
+    public void setTeacherRole(String teacherRole) {
+        this.teacherRole = teacherRole;
     }
 
     @Override
@@ -99,8 +88,8 @@ public class TeacherEntity {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", peselNumber=" + peselNumber +
-                ", teacherRole=" + teacherRole +
-                ", fieldOfStudy=" + fieldOfStudy +
+                ", isActive=" + isActive +
+                ", teacherRole='" + teacherRole + '\'' +
                 '}';
     }
 }

@@ -16,23 +16,17 @@ public class StudentEntity {
     private long peselNumber;
     @Column(nullable = false, name = "COLLEGE_ID")
     private int collegeId;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private FieldOfStudyEntity fieldOfStudyEntity;
     private boolean isActive;
-
-    private String yearOfStudy;
 
     public StudentEntity() {
     }
 
-    public StudentEntity(String firstName, String lastName, long peselNumber, int collegeId, FieldOfStudyEntity fieldOfStudy, boolean isActive, String yearOfStudy) {
+    public StudentEntity(String firstName, String lastName, long peselNumber, int collegeId, boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
         this.collegeId = collegeId;
-        this.fieldOfStudyEntity = fieldOfStudy;
         this.isActive = isActive;
-        this.yearOfStudy = yearOfStudy;
     }
 
     public long getId() {
@@ -75,14 +69,6 @@ public class StudentEntity {
         this.collegeId = collegeId;
     }
 
-    public FieldOfStudyEntity getFieldOfStudy() {
-        return fieldOfStudyEntity;
-    }
-
-    public void setFieldOfStudy(FieldOfStudyEntity fieldOfStudy) {
-        this.fieldOfStudyEntity = fieldOfStudy;
-    }
-
     public boolean isActive() {
         return isActive;
     }
@@ -91,24 +77,15 @@ public class StudentEntity {
         isActive = active;
     }
 
-    public String getYearOfStudy() {
-        return yearOfStudy;
-    }
-
-    public void setYearOfStudy(String yearOfStudy) {
-        this.yearOfStudy = yearOfStudy;
-    }
-
     @Override
     public String toString() {
-        return "Student{" +
+        return "StudentEntity{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", peselNumber='" + peselNumber + '\'' +
-                ", collegeId='" + collegeId + '\'' +
-                ", fieldOfStudy='" + fieldOfStudyEntity + '\'' +
-                ", isActive='" + isActive + '\'' +
+                ", peselNumber=" + peselNumber +
+                ", collegeId=" + collegeId +
+                ", isActive=" + isActive +
                 '}';
     }
 }

@@ -8,19 +8,22 @@ import java.util.List;
 public class FieldOfStudyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "FOS_ID")
     private long id;
+    @Column(name = "FOS_NAME")
     private String fieldOfStudy;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "COLLEGE_ID")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = StudentEntity.class)
+    @JoinColumn(name = "COLLEGE_ID", referencedColumnName = "COLLEGE_ID")
     private List<StudentEntity> students;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "TEACHER_ID")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = TeacherEntity.class)
+    @JoinColumn(name = "TEACHER_ID", referencedColumnName = "TEACHER_ID")
     private List<TeacherEntity> teachers;
 
     public FieldOfStudyEntity() {
     }
 
-    public FieldOfStudyEntity(List<StudentEntity> students, List<TeacherEntity> teachers) {
+    public FieldOfStudyEntity(String fieldOfStudy, List<StudentEntity> students, List<TeacherEntity> teachers) {
+        this.fieldOfStudy = fieldOfStudy;
         this.students = students;
         this.teachers = teachers;
     }
@@ -61,7 +64,7 @@ public class FieldOfStudyEntity {
     public String toString() {
         return "FieldOfStudyEntity{" +
                 "id=" + id +
-                ", fieldOfStudy=" + fieldOfStudy +
+                ", fieldOfStudy='" + fieldOfStudy + '\'' +
                 ", students=" + students +
                 ", teachers=" + teachers +
                 '}';
