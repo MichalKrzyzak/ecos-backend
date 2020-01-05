@@ -35,6 +35,6 @@ public class FieldOfStudyService {
 
     public FieldOfStudyDto createFieldOfStudy(@RequestBody FieldOfStudyDto fieldOfStudyDto) {
         FieldOfStudyEntity fieldOfStudy = fieldOfStudyConverter.convertToEntity(fieldOfStudyDto);
-        return fieldOfStudyConverter.convertToDto(fieldOfStudyRepository.save(new FieldOfStudyEntity(fieldOfStudy.getFieldOfStudy(), fieldOfStudy.getStudents(), fieldOfStudy.getTeachers())));
+        return fieldOfStudyConverter.convertToDto(fieldOfStudyRepository.save(new FieldOfStudyEntity(fieldOfStudy.getFieldOfStudy())));
     }
 }

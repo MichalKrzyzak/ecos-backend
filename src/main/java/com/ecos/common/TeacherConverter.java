@@ -6,28 +6,28 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TeacherConverter implements BaseConverter<TeacherEntity, TeacherDto> {
-    private TeacherEntity teacherEntity = new TeacherEntity();
-    private TeacherDto teacherDto = new TeacherDto();
 
     @Override
     public TeacherDto convertToDto(TeacherEntity entity) {
-        teacherDto.setId(teacherEntity.getId());
-        teacherDto.setFirstName(teacherEntity.getFirstName());
-        teacherDto.setLastName(teacherEntity.getLastName());
-        teacherDto.setPeselNumber(teacherEntity.getPeselNumber());
-        teacherDto.setTeacherRole(teacherEntity.getTeacherRole());
-        teacherDto.setActive(teacherEntity.isActive());
+        TeacherDto teacherDto = new TeacherDto();
+
+        teacherDto.setId(entity.getId());
+        teacherDto.setFirstName(entity.getFirstName());
+        teacherDto.setLastName(entity.getLastName());
+        teacherDto.setPeselNumber(entity.getPeselNumber());
+        teacherDto.setActive(entity.isActive());
         return teacherDto;
     }
 
     @Override
     public TeacherEntity convertToEntity(TeacherDto dto) {
-        teacherEntity.setId(teacherDto.getId());
-        teacherEntity.setFirstName(teacherDto.getFirstName());
-        teacherEntity.setLastName(teacherDto.getLastName());
-        teacherEntity.setPeselNumber(teacherDto.getPeselNumber());
-        teacherEntity.setTeacherRole(teacherDto.getTeacherRole());
-        teacherEntity.setActive(teacherDto.isActive());
+        TeacherEntity teacherEntity = new TeacherEntity();
+
+        teacherEntity.setId(dto.getId());
+        teacherEntity.setFirstName(dto.getFirstName());
+        teacherEntity.setLastName(dto.getLastName());
+        teacherEntity.setPeselNumber(dto.getPeselNumber());
+        teacherEntity.setActive(dto.isActive());
         return teacherEntity;
     }
 }

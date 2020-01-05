@@ -47,7 +47,7 @@ public class TeacherService {
 
     public TeacherDto createTeacher(@RequestBody TeacherDto teacherDto) {
         TeacherEntity teacher = teacherConverter.convertToEntity(teacherDto);
-        return teacherConverter.convertToDto(teacherRepository.save(new TeacherEntity(teacher.getFirstName(), teacher.getLastName(), teacher.getPeselNumber(), teacher.isActive(), teacher.getTeacherRole())));
+        return teacherConverter.convertToDto(teacherRepository.save(new TeacherEntity(teacher.getFirstName(), teacher.getLastName(), teacher.getPeselNumber(), teacher.isActive(), teacher.getFieldOfStudy())));
     }
 
     public ResponseEntity<TeacherDto> updateTeacherById(@PathVariable("id") long id, @RequestBody TeacherDto teacherDto) {

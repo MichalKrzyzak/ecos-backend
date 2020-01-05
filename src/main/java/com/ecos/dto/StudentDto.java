@@ -1,22 +1,28 @@
 package com.ecos.dto;
 
+import java.util.List;
+
 public class StudentDto {
     private long id;
     private String firstName;
     private String lastName;
     private long peselNumber;
     private int collegeId;
+    private FieldOfStudyDto fieldOfStudy;
+    private List<GradeDto> grades;
     private boolean isActive;
 
     public StudentDto() {
     }
 
-    public StudentDto(long id, String firstName, String lastName, long peselNumber, int collegeId, boolean isActive) {
+    public StudentDto(long id, String firstName, String lastName, long peselNumber, int collegeId, FieldOfStudyDto fieldOfStudy, List<GradeDto> grades, boolean isActive) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
         this.collegeId = collegeId;
+        this.fieldOfStudy = fieldOfStudy;
+        this.grades = grades;
         this.isActive = isActive;
     }
 
@@ -60,6 +66,22 @@ public class StudentDto {
         this.collegeId = collegeId;
     }
 
+    public FieldOfStudyDto getFieldOfStudy() {
+        return fieldOfStudy;
+    }
+
+    public void setFieldOfStudy(FieldOfStudyDto fieldOfStudy) {
+        this.fieldOfStudy = fieldOfStudy;
+    }
+
+    public List<GradeDto> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<GradeDto> grades) {
+        this.grades = grades;
+    }
+
     public boolean isActive() {
         return isActive;
     }
@@ -76,6 +98,8 @@ public class StudentDto {
                 ", lastName='" + lastName + '\'' +
                 ", peselNumber=" + peselNumber +
                 ", collegeId=" + collegeId +
+                ", fieldOfStudy=" + fieldOfStudy +
+                ", grades=" + grades +
                 ", isActive=" + isActive +
                 '}';
     }

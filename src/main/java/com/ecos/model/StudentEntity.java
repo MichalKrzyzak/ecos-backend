@@ -1,6 +1,7 @@
 package com.ecos.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Students")
@@ -16,16 +17,22 @@ public class StudentEntity {
     private long peselNumber;
     @Column(nullable = false, name = "COLLEGE_ID")
     private int collegeId;
+    @ManyToOne
+    private FieldOfStudyEntity fieldOfStudy;
+    @OneToMany
+    private List<GradeEntity> grades;
     private boolean isActive;
 
     public StudentEntity() {
     }
 
-    public StudentEntity(String firstName, String lastName, long peselNumber, int collegeId, boolean isActive) {
+    public StudentEntity(String firstName, String lastName, long peselNumber, int collegeId, FieldOfStudyEntity fieldOfStudy, List<GradeEntity> grades, boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
         this.collegeId = collegeId;
+        this.fieldOfStudy = fieldOfStudy;
+        this.grades = grades;
         this.isActive = isActive;
     }
 
@@ -69,6 +76,22 @@ public class StudentEntity {
         this.collegeId = collegeId;
     }
 
+    public FieldOfStudyEntity getFieldOfStudy() {
+        return fieldOfStudy;
+    }
+
+    public void setFieldOfStudy(FieldOfStudyEntity fieldOfStudy) {
+        this.fieldOfStudy = fieldOfStudy;
+    }
+
+    public List<GradeEntity> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<GradeEntity> grades) {
+        this.grades = grades;
+    }
+
     public boolean isActive() {
         return isActive;
     }
@@ -85,6 +108,8 @@ public class StudentEntity {
                 ", lastName='" + lastName + '\'' +
                 ", peselNumber=" + peselNumber +
                 ", collegeId=" + collegeId +
+                ", fieldOfStudy=" + fieldOfStudy +
+                ", grades=" + grades +
                 ", isActive=" + isActive +
                 '}';
     }

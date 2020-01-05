@@ -47,7 +47,7 @@ public class StudentService {
 
     public StudentDto createStudent(@RequestBody StudentDto studentDto) {
         StudentEntity student = studentConverter.convertToEntity(studentDto);
-        return studentConverter.convertToDto(studentRepository.save(new StudentEntity(student.getFirstName(), student.getLastName(), student.getPeselNumber(), student.getCollegeId(), student.isActive())));
+        return studentConverter.convertToDto(studentRepository.save(new StudentEntity(student.getFirstName(), student.getLastName(), student.getPeselNumber(), student.getCollegeId(), student.getFieldOfStudy(), student.getGrades(), student.isActive())));
     }
 
     public ResponseEntity<StudentDto> updateStudentById(@PathVariable("id") long id, @RequestBody StudentDto studentDto) {
@@ -67,6 +67,8 @@ public class StudentService {
             _studentEntity.setLastName(studentEntity.getLastName());
             _studentEntity.setPeselNumber(studentEntity.getPeselNumber());
             _studentEntity.setCollegeId(studentEntity.getCollegeId());
+            _studentEntity.setFieldOfStudy(studentEntity.getFieldOfStudy());
+            _studentEntity.setGrades(studentEntity.getGrades());
             _studentEntity.setActive(studentEntity.isActive());
 
             StudentDto studentDto = studentConverter.convertToDto(studentRepository.save(_studentEntity));

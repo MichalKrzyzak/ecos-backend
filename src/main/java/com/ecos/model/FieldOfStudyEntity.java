@@ -1,7 +1,6 @@
 package com.ecos.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "FieldsOfStudy")
@@ -12,20 +11,12 @@ public class FieldOfStudyEntity {
     private long id;
     @Column(name = "FOS_NAME")
     private String fieldOfStudy;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = StudentEntity.class)
-    @JoinColumn(name = "COLLEGE_ID", referencedColumnName = "COLLEGE_ID")
-    private List<StudentEntity> students;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = TeacherEntity.class)
-    @JoinColumn(name = "TEACHER_ID", referencedColumnName = "TEACHER_ID")
-    private List<TeacherEntity> teachers;
 
     public FieldOfStudyEntity() {
     }
 
-    public FieldOfStudyEntity(String fieldOfStudy, List<StudentEntity> students, List<TeacherEntity> teachers) {
+    public FieldOfStudyEntity(String fieldOfStudy) {
         this.fieldOfStudy = fieldOfStudy;
-        this.students = students;
-        this.teachers = teachers;
     }
 
     public long getId() {
@@ -44,29 +35,11 @@ public class FieldOfStudyEntity {
         this.fieldOfStudy = fieldOfStudy;
     }
 
-    public List<StudentEntity> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<StudentEntity> students) {
-        this.students = students;
-    }
-
-    public List<TeacherEntity> getTeachers() {
-        return teachers;
-    }
-
-    public void setTeachers(List<TeacherEntity> teachers) {
-        this.teachers = teachers;
-    }
-
     @Override
     public String toString() {
         return "FieldOfStudyEntity{" +
                 "id=" + id +
                 ", fieldOfStudy='" + fieldOfStudy + '\'' +
-                ", students=" + students +
-                ", teachers=" + teachers +
                 '}';
     }
 }

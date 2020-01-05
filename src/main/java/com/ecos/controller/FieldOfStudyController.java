@@ -27,8 +27,7 @@ public class FieldOfStudyController {
 
     @PostMapping("/fieldOfStudy")
     public FieldOfStudyDto addFieldOfStudy (@RequestBody FieldOfStudyDto fieldOfStudyDto) {
-        log.info("Creating new field of study...");
+        log.info("Creating new field of study..." + fieldOfStudyDto);
         return fieldOfStudyService.createFieldOfStudy(fieldOfStudyDto);
     }
-
 }

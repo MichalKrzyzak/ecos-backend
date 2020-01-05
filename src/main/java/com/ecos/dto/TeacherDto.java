@@ -5,19 +5,19 @@ public class TeacherDto {
     private String firstName;
     private String lastName;
     private long peselNumber;
+    private FieldOfStudyDto fieldOfStudy;
     private boolean isActive;
-    private String teacherRole;
 
     public TeacherDto() {
     }
 
-    public TeacherDto(long id, String firstName, String lastName, long peselNumber, boolean isActive, String teacherRole) {
+    public TeacherDto(long id, String firstName, String lastName, long peselNumber, FieldOfStudyDto fieldOfStudy, boolean isActive) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
+        this.fieldOfStudy = fieldOfStudy;
         this.isActive = isActive;
-        this.teacherRole = teacherRole;
     }
 
     public long getId() {
@@ -52,20 +52,20 @@ public class TeacherDto {
         this.peselNumber = peselNumber;
     }
 
+    public FieldOfStudyDto getFieldOfStudy() {
+        return fieldOfStudy;
+    }
+
+    public void setFieldOfStudy(FieldOfStudyDto fieldOfStudy) {
+        this.fieldOfStudy = fieldOfStudy;
+    }
+
     public boolean isActive() {
         return isActive;
     }
 
     public void setActive(boolean active) {
         isActive = active;
-    }
-
-    public String getTeacherRole() {
-        return teacherRole;
-    }
-
-    public void setTeacherRole(String teacherRole) {
-        this.teacherRole = teacherRole;
     }
 
     @Override
@@ -75,8 +75,8 @@ public class TeacherDto {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", peselNumber=" + peselNumber +
+                ", fieldOfStudy=" + fieldOfStudy +
                 ", isActive=" + isActive +
-                ", teacherRole='" + teacherRole + '\'' +
                 '}';
     }
 }

@@ -1,7 +1,5 @@
 package com.ecos.model;
 
-import com.ecos.model.enums.TeacherRoleEnum;
-
 import javax.persistence.*;
 
 @Entity
@@ -17,20 +15,20 @@ public class TeacherEntity {
     private String lastName;
     @Column(nullable = false)
     private long peselNumber;
+    @ManyToOne
+    private FieldOfStudyEntity fieldOfStudy;
     @Column(nullable = false)
     private boolean isActive;
-    private String teacherRole;
 
     public TeacherEntity() {
-
     }
 
-    public TeacherEntity(String firstName, String lastName, long peselNumber, boolean isActive, String teacherRole) {
+    public TeacherEntity(String firstName, String lastName, long peselNumber, boolean isActive, FieldOfStudyEntity fieldOfStudy) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
         this.isActive = isActive;
-        this.teacherRole = teacherRole;
+        this.fieldOfStudy = fieldOfStudy;
     }
 
     public long getId() {
@@ -73,12 +71,12 @@ public class TeacherEntity {
         isActive = active;
     }
 
-    public String getTeacherRole() {
-        return teacherRole;
+    public FieldOfStudyEntity getFieldOfStudy() {
+        return fieldOfStudy;
     }
 
-    public void setTeacherRole(String teacherRole) {
-        this.teacherRole = teacherRole;
+    public void setFieldOfStudy(FieldOfStudyEntity fieldOfStudy) {
+        this.fieldOfStudy = fieldOfStudy;
     }
 
     @Override
@@ -89,7 +87,7 @@ public class TeacherEntity {
                 ", lastName='" + lastName + '\'' +
                 ", peselNumber=" + peselNumber +
                 ", isActive=" + isActive +
-                ", teacherRole='" + teacherRole + '\'' +
+                ", fieldOfStudy=" + fieldOfStudy +
                 '}';
     }
 }
