@@ -1,7 +1,7 @@
 package com.ecos.controller;
 
 import com.ecos.dto.TeacherDto;
-import com.ecos.service.TeacherService;
+import com.ecos.service.teacher.TeacherServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,42 +10,43 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/teachers")
 @RestController
 @Slf4j
 public class TeacherController {
-    private final TeacherService teacherService;
+    private final TeacherServiceImpl teacherServiceImpl;
 
-    public TeacherController(TeacherService teacherService) {
-        this.teacherService = teacherService;
+    public TeacherController(TeacherServiceImpl teacherServiceImpl) {
+        this.teacherServiceImpl = teacherServiceImpl;
     }
 
-    @GetMapping("/teachers")
+    @GetMapping
     public List<TeacherDto> getAllTeachers() {
         log.info("Fetching all teachers...");
-        return teacherService.getAllTeachers();
+        return teacherServiceImpl.getAll();
     }
 
-    @GetMapping("/teachers/id/{id}")
+    @GetMapping("/id/{id}")
     public Optional<TeacherDto> getTeacherById(@PathVariable("id") long id) {
         log.info("Fetching teacher with ID: " + id);
-        return teacherService.getTeacherById(id);
+        return teacherServiceImpl.getById(id);
     }
 
-    @PostMapping("/teachers")
+    @PostMapping
     public TeacherDto addTeacher(@RequestBody TeacherDto teacherDto) {
         log.info("New teacher: " + teacherDto);
-        return teacherService.createTeacher(teacherDto);
+        return teacherServiceImpl.create(teacherDto);
     }
 
-    @DeleteMapping("/teachers/id/{id}")
+    @DeleteMapping("/id/{id}")
     public ResponseEntity<String> deleteTeacherById(@PathVariable("id") long id) {
         log.info("Removing teacher: " + id);
-        return teacherService.deleteTeacherById(id);
+        return teacherServiceImpl.deleteById(id);
     }
 
-    @PutMapping("/teachers/id/{id}")
+    @PutMapping("/id/{id}")
     public ResponseEntity<TeacherDto> updateTeacherById(@PathVariable("id") long id, @RequestBody TeacherDto teacherDto) {
         log.info("Updating teacher: " + id + "\nData: " + teacherDto.toString());
-        return teacherService.updateTeacherById(id, teacherDto);
+        return teacherServiceImpl.updateById(id, teacherDto);
     }
 }

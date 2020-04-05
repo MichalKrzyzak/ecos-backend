@@ -7,15 +7,21 @@ import javax.persistence.*;
 public class TeacherEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TEACHER_ID")
+    @Column(name = "TEACHER_ID", nullable = false)
     private long id;
-    @Column(columnDefinition = "VARCHAR(25) NOT NULL")
-    private String firstName;
-    @Column(columnDefinition = "VARCHAR(25) NOT NULL")
-    private String lastName;
-    @Column(nullable = false)
-    private long peselNumber;
+    @Embedded
+    private PersonalDataEntity personalData;
+    @Column(unique = true)
+    private String email;
+    @Embedded
+    @AttributeOverrides(value = {
+            @AttributeOverride(name = "addressLine1", column = @Column(name = "correspondence_street")),
+            @AttributeOverride(name = "addressLine2", column = @Column(name = "correspondence_house_number")),
+            @AttributeOverride(name = "addressLine3", column = @Column(name = "correspondence_apartment_number"))
+    })
+    private AddressEntity correspondenceAddress;
     @ManyToOne
+    @JoinColumn(name = "FOS_ID")
     private FieldOfStudyEntity fieldOfStudy;
     @Column(nullable = false)
     private boolean isActive;
@@ -23,12 +29,12 @@ public class TeacherEntity {
     public TeacherEntity() {
     }
 
-    public TeacherEntity(String firstName, String lastName, long peselNumber, boolean isActive, FieldOfStudyEntity fieldOfStudy) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.peselNumber = peselNumber;
-        this.isActive = isActive;
+    public TeacherEntity(PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, FieldOfStudyEntity fieldOfStudy, boolean isActive) {
+        this.personalData = personalData;
+        this.email = email;
+        this.correspondenceAddress = correspondenceAddress;
         this.fieldOfStudy = fieldOfStudy;
+        this.isActive = isActive;
     }
 
     public long getId() {
@@ -39,36 +45,28 @@ public class TeacherEntity {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public PersonalDataEntity getPersonalData() {
+        return personalData;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPersonalData(PersonalDataEntity personalData) {
+        this.personalData = personalData;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public long getPeselNumber() {
-        return peselNumber;
+    public AddressEntity getCorrespondenceAddress() {
+        return correspondenceAddress;
     }
 
-    public void setPeselNumber(long peselNumber) {
-        this.peselNumber = peselNumber;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setCorrespondenceAddress(AddressEntity correspondenceAddress) {
+        this.correspondenceAddress = correspondenceAddress;
     }
 
     public FieldOfStudyEntity getFieldOfStudy() {
@@ -79,15 +77,23 @@ public class TeacherEntity {
         this.fieldOfStudy = fieldOfStudy;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     @Override
     public String toString() {
         return "TeacherEntity{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", peselNumber=" + peselNumber +
-                ", isActive=" + isActive +
+                ", personalData=" + personalData +
+                ", email='" + email + '\'' +
+                ", correspondenceAddress=" + correspondenceAddress +
                 ", fieldOfStudy=" + fieldOfStudy +
+                ", isActive=" + isActive +
                 '}';
     }
 }

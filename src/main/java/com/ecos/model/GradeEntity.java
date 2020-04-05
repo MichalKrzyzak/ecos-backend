@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class GradeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "grade_id")
+    @Column(name = "grade_id", nullable = false)
     private long id;
     @Column(name = "grade")
     private int grade;
@@ -16,6 +16,7 @@ public class GradeEntity {
     @OneToOne
     private AssignmentEntity assignment;
     @ManyToOne
+    @JoinColumn(name = "STUDENT_ID")
     private StudentEntity student;
 
     public GradeEntity() {

@@ -1,32 +1,33 @@
 package com.ecos.controller;
 
 import com.ecos.dto.AssignmentDto;
-import com.ecos.service.AssignmentService;
+import com.ecos.service.assignment.AssignmentServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/assignment")
 @RestController
 @Slf4j
 public class AssignmentController {
-    private final AssignmentService assignmentService;
+    private final AssignmentServiceImpl assignmentServiceImpl;
 
-    public AssignmentController(AssignmentService assignmentService) {
-        this.assignmentService = assignmentService;
+    public AssignmentController(AssignmentServiceImpl assignmentServiceImpl) {
+        this.assignmentServiceImpl = assignmentServiceImpl;
     }
 
-    @GetMapping("/assignment")
+    @GetMapping
     public List<AssignmentDto> getAllAssignments() {
         log.info("Fetching all assignments...");
 
-        return assignmentService.getAllAssignments();
+        return assignmentServiceImpl.getAll();
     }
 
-    @PostMapping("/assignment")
+    @PostMapping
     public AssignmentDto addAssignment (@RequestBody AssignmentDto assignmentDto) {
         log.info("Creating new assignment..." + assignmentDto);
-        return assignmentService.createAssignment(assignmentDto);
+        return assignmentServiceImpl.create(assignmentDto);
     }
 }

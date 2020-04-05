@@ -8,30 +8,40 @@ import java.util.List;
 public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "STUDENT_ID", nullable = false)
     private long id;
-    @Column(columnDefinition = "VARCHAR(25) NOT NULL")
-    private String firstName;
-    @Column(columnDefinition = "VARCHAR(25) NOT NULL")
-    private String lastName;
-    @Column(nullable = false)
-    private long peselNumber;
+    @Embedded
+    private PersonalDataEntity personalData;
+    @Column(unique = true)
+    private String email;
+    @Embedded
+    @AttributeOverrides(value = {
+            @AttributeOverride(name = "addressLine1", column = @Column(name = "correspondence_street")),
+            @AttributeOverride(name = "addressLine2", column = @Column(name = "correspondence_house_number")),
+            @AttributeOverride(name = "addressLine3", column = @Column(name = "correspondence_apartment_number"))
+    })
+    private AddressEntity correspondenceAddress;
     @Column(nullable = false, name = "COLLEGE_ID")
     private int collegeId;
-    @ManyToOne
-    private FieldOfStudyEntity fieldOfStudy;
-    @OneToMany
+    @ManyToMany
+    @JoinTable(name = "students_field_of_study",
+            joinColumns = {@JoinColumn(name = "student_entity_student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "field_of_study_fos_id")}
+    )
+    private List<FieldOfStudyEntity> fieldsOfStudy;
+    @OneToMany(mappedBy = "student")
     private List<GradeEntity> grades;
     private boolean isActive;
 
     public StudentEntity() {
     }
 
-    public StudentEntity(String firstName, String lastName, long peselNumber, int collegeId, FieldOfStudyEntity fieldOfStudy, List<GradeEntity> grades, boolean isActive) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.peselNumber = peselNumber;
+    public StudentEntity(PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, int collegeId, List<FieldOfStudyEntity> fieldsOfStudy, List<GradeEntity> grades, boolean isActive) {
+        this.personalData = personalData;
+        this.email = email;
+        this.correspondenceAddress = correspondenceAddress;
         this.collegeId = collegeId;
-        this.fieldOfStudy = fieldOfStudy;
+        this.fieldsOfStudy = fieldsOfStudy;
         this.grades = grades;
         this.isActive = isActive;
     }
@@ -44,28 +54,28 @@ public class StudentEntity {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public PersonalDataEntity getPersonalData() {
+        return personalData;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPersonalData(PersonalDataEntity personalData) {
+        this.personalData = personalData;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public long getPeselNumber() {
-        return peselNumber;
+    public AddressEntity getCorrespondenceAddress() {
+        return correspondenceAddress;
     }
 
-    public void setPeselNumber(long peselNumber) {
-        this.peselNumber = peselNumber;
+    public void setCorrespondenceAddress(AddressEntity correspondenceAddress) {
+        this.correspondenceAddress = correspondenceAddress;
     }
 
     public int getCollegeId() {
@@ -76,12 +86,12 @@ public class StudentEntity {
         this.collegeId = collegeId;
     }
 
-    public FieldOfStudyEntity getFieldOfStudy() {
-        return fieldOfStudy;
+    public List<FieldOfStudyEntity> getFieldsOfStudy() {
+        return fieldsOfStudy;
     }
 
-    public void setFieldOfStudy(FieldOfStudyEntity fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
+    public void setFieldsOfStudy(List<FieldOfStudyEntity> fieldsOfStudy) {
+        this.fieldsOfStudy = fieldsOfStudy;
     }
 
     public List<GradeEntity> getGrades() {
@@ -104,11 +114,11 @@ public class StudentEntity {
     public String toString() {
         return "StudentEntity{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", peselNumber=" + peselNumber +
+                ", personalData=" + personalData +
+                ", email='" + email + '\'' +
+                ", correspondenceAddress=" + correspondenceAddress +
                 ", collegeId=" + collegeId +
-                ", fieldOfStudy=" + fieldOfStudy +
+                ", fieldsOfStudy=" + fieldsOfStudy +
                 ", grades=" + grades +
                 ", isActive=" + isActive +
                 '}';

@@ -1,4 +1,4 @@
-package com.ecos.repository;
+package com.ecos.dao;
 
 import com.ecos.model.FieldOfStudyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

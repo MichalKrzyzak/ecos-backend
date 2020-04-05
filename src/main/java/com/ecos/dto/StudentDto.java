@@ -4,24 +4,23 @@ import java.util.List;
 
 public class StudentDto {
     private long id;
-    private String firstName;
-    private String lastName;
-    private long peselNumber;
+    private PersonalDataDto personalData;
+    private String email;
+    private AddressDto registeredAddress;
+    private AddressDto correspondenceAddress;
     private int collegeId;
-    private FieldOfStudyDto fieldOfStudy;
+    private List<FieldOfStudyDto> fieldsOfStudy;
     private List<GradeDto> grades;
     private boolean isActive;
 
-    public StudentDto() {
-    }
-
-    public StudentDto(long id, String firstName, String lastName, long peselNumber, int collegeId, FieldOfStudyDto fieldOfStudy, List<GradeDto> grades, boolean isActive) {
+    public StudentDto(long id, PersonalDataDto personalData, String email, AddressDto registeredAddress, AddressDto correspondenceAddress, int collegeId, List<FieldOfStudyDto> fieldsOfStudy, List<GradeDto> grades, boolean isActive) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.peselNumber = peselNumber;
+        this.personalData = personalData;
+        this.email = email;
+        this.registeredAddress = registeredAddress;
+        this.correspondenceAddress = correspondenceAddress;
         this.collegeId = collegeId;
-        this.fieldOfStudy = fieldOfStudy;
+        this.fieldsOfStudy = fieldsOfStudy;
         this.grades = grades;
         this.isActive = isActive;
     }
@@ -34,28 +33,36 @@ public class StudentDto {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public PersonalDataDto getPersonalData() {
+        return personalData;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPersonalData(PersonalDataDto personalData) {
+        this.personalData = personalData;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public long getPeselNumber() {
-        return peselNumber;
+    public AddressDto getRegisteredAddress() {
+        return registeredAddress;
     }
 
-    public void setPeselNumber(long peselNumber) {
-        this.peselNumber = peselNumber;
+    public void setRegisteredAddress(AddressDto registeredAddress) {
+        this.registeredAddress = registeredAddress;
+    }
+
+    public AddressDto getCorrespondenceAddress() {
+        return correspondenceAddress;
+    }
+
+    public void setCorrespondenceAddress(AddressDto correspondenceAddress) {
+        this.correspondenceAddress = correspondenceAddress;
     }
 
     public int getCollegeId() {
@@ -66,12 +73,12 @@ public class StudentDto {
         this.collegeId = collegeId;
     }
 
-    public FieldOfStudyDto getFieldOfStudy() {
-        return fieldOfStudy;
+    public List<FieldOfStudyDto> getFieldsOfStudy() {
+        return fieldsOfStudy;
     }
 
-    public void setFieldOfStudy(FieldOfStudyDto fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
+    public void setFieldsOfStudy(List<FieldOfStudyDto> fieldsOfStudy) {
+        this.fieldsOfStudy = fieldsOfStudy;
     }
 
     public List<GradeDto> getGrades() {
@@ -94,11 +101,12 @@ public class StudentDto {
     public String toString() {
         return "StudentDto{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", peselNumber=" + peselNumber +
+                ", personalData=" + personalData +
+                ", email='" + email + '\'' +
+                ", registeredAddress=" + registeredAddress +
+                ", correspondenceAddress=" + correspondenceAddress +
                 ", collegeId=" + collegeId +
-                ", fieldOfStudy=" + fieldOfStudy +
+                ", fieldsOfStudy=" + fieldsOfStudy +
                 ", grades=" + grades +
                 ", isActive=" + isActive +
                 '}';
