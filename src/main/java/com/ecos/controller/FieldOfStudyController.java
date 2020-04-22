@@ -1,7 +1,6 @@
 package com.ecos.controller;
 
 import com.ecos.dto.FieldOfStudyDto;
-import com.ecos.service.fieldofstudy.FieldOfStudyService;
 import com.ecos.service.fieldofstudy.FieldOfStudyServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,6 @@ import java.util.List;
 @RestController
 @Slf4j
 public class FieldOfStudyController {
-
     private final FieldOfStudyServiceImpl fieldOfStudyServiceImpl;
 
     public FieldOfStudyController(FieldOfStudyServiceImpl fieldOfStudyServiceImpl) {

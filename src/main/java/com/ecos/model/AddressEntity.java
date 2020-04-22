@@ -1,28 +1,27 @@
 package com.ecos.model;
 
-import com.sun.istack.NotNull;
-
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.Size;
 
 @Embeddable
 public class AddressEntity {
-    @NotNull
     @Size(max = 100)
+    @Column(nullable = false)
     private String addressLine1;
-    @NotNull
     @Size(max = 100)
+    @Column(nullable = false)
     private String addressLine2;
     @Size(max = 100)
     private String addressLine3;
-    @NotNull
     @Size(max = 100)
+    @Column(nullable = false)
     private String city;
-    @NotNull
     @Size(max = 100)
+    @Column(nullable = false)
     private String voivodeship;
-    @NotNull
     @Size(max = 7)
+    @Column(nullable = false)
     private String zipCode;
 
     public AddressEntity() {

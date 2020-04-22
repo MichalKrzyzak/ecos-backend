@@ -4,16 +4,17 @@ public class TeacherDto {
     private long id;
     private PersonalDataDto personalData;
     private String email;
-    private AddressDto registeredAddress;
     private AddressDto correspondenceAddress;
     private FieldOfStudyDto fieldOfStudy;
     private boolean isActive;
 
-    public TeacherDto(long id, PersonalDataDto personalData, String email, AddressDto registeredAddress, AddressDto correspondenceAddress, FieldOfStudyDto fieldOfStudy, boolean isActive) {
+    public TeacherDto() {
+    }
+
+    public TeacherDto(long id, PersonalDataDto personalData, String email, AddressDto correspondenceAddress, FieldOfStudyDto fieldOfStudy, boolean isActive) {
         this.id = id;
         this.personalData = personalData;
         this.email = email;
-        this.registeredAddress = registeredAddress;
         this.correspondenceAddress = correspondenceAddress;
         this.fieldOfStudy = fieldOfStudy;
         this.isActive = isActive;
@@ -41,14 +42,6 @@ public class TeacherDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public AddressDto getRegisteredAddress() {
-        return registeredAddress;
-    }
-
-    public void setRegisteredAddress(AddressDto registeredAddress) {
-        this.registeredAddress = registeredAddress;
     }
 
     public AddressDto getCorrespondenceAddress() {
@@ -81,7 +74,6 @@ public class TeacherDto {
                 "id=" + id +
                 ", personalData=" + personalData +
                 ", email='" + email + '\'' +
-                ", registeredAddress=" + registeredAddress +
                 ", correspondenceAddress=" + correspondenceAddress +
                 ", fieldOfStudy=" + fieldOfStudy +
                 ", isActive=" + isActive +
