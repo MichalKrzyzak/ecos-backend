@@ -1,20 +1,19 @@
 package com.ecos.model;
 
-import com.sun.istack.NotNull;
-
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.Size;
 
 @Embeddable
 public class PersonalDataEntity {
-    @NotNull
     @Size(max = 25)
+    @Column(nullable = false)
     private String firstName;
-    @NotNull
     @Size(max = 25)
+    @Column(nullable = false)
     private String lastName;
-    @NotNull
     @Size(max = 11)
+    @Column(nullable = false)
     private long peselNumber;
 
     public PersonalDataEntity() {
