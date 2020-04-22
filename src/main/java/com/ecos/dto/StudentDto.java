@@ -6,18 +6,19 @@ public class StudentDto {
     private long id;
     private PersonalDataDto personalData;
     private String email;
-    private AddressDto registeredAddress;
     private AddressDto correspondenceAddress;
     private int collegeId;
     private List<FieldOfStudyDto> fieldsOfStudy;
     private List<GradeDto> grades;
     private boolean isActive;
 
-    public StudentDto(long id, PersonalDataDto personalData, String email, AddressDto registeredAddress, AddressDto correspondenceAddress, int collegeId, List<FieldOfStudyDto> fieldsOfStudy, List<GradeDto> grades, boolean isActive) {
+    public StudentDto() {
+    }
+
+    public StudentDto(long id, PersonalDataDto personalData, String email, AddressDto correspondenceAddress, int collegeId, List<FieldOfStudyDto> fieldsOfStudy, List<GradeDto> grades, boolean isActive) {
         this.id = id;
         this.personalData = personalData;
         this.email = email;
-        this.registeredAddress = registeredAddress;
         this.correspondenceAddress = correspondenceAddress;
         this.collegeId = collegeId;
         this.fieldsOfStudy = fieldsOfStudy;
@@ -47,14 +48,6 @@ public class StudentDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public AddressDto getRegisteredAddress() {
-        return registeredAddress;
-    }
-
-    public void setRegisteredAddress(AddressDto registeredAddress) {
-        this.registeredAddress = registeredAddress;
     }
 
     public AddressDto getCorrespondenceAddress() {
@@ -103,7 +96,6 @@ public class StudentDto {
                 "id=" + id +
                 ", personalData=" + personalData +
                 ", email='" + email + '\'' +
-                ", registeredAddress=" + registeredAddress +
                 ", correspondenceAddress=" + correspondenceAddress +
                 ", collegeId=" + collegeId +
                 ", fieldsOfStudy=" + fieldsOfStudy +

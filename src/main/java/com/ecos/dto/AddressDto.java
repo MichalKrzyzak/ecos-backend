@@ -8,6 +8,9 @@ public class AddressDto {
     private String voivodeship;
     private String zipCode;
 
+    public AddressDto() {
+    }
+
     public AddressDto(String addressLine1, String addressLine2, String addressLine3, String city, String voivodeship, String zipCode) {
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;

@@ -5,6 +5,9 @@ public class PersonalDataDto {
     private String lastName;
     private long peselNumber;
 
+    public PersonalDataDto() {
+    }
+
     public PersonalDataDto(String firstName, String lastName, long peselNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
