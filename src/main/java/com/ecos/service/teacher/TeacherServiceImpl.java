@@ -47,7 +47,7 @@ public class TeacherServiceImpl implements TeacherService<TeacherDto, TeacherEnt
 
     public TeacherDto create(@RequestBody TeacherDto teacherDto) {
         TeacherEntity teacher = convertToEntity(teacherDto);
-        return convertToDto(teacherRepository.save(new TeacherEntity(teacher.getPersonalData(), teacher.getEmail(), teacher.getCorrespondenceAddress(), teacher.getFieldOfStudy(), teacher.isActive())));
+        return convertToDto(teacherRepository.save(new TeacherEntity(teacher.getId(), teacher.getPersonalData(), teacher.getEmail(), teacher.getCorrespondenceAddress(), teacher.getClasses(), teacher.isActive())));
     }
 
     public ResponseEntity<TeacherDto> updateById(@PathVariable("id") long id, @RequestBody TeacherDto teacherDto) {
@@ -67,7 +67,7 @@ public class TeacherServiceImpl implements TeacherService<TeacherDto, TeacherEnt
             _teacherEntity.setPersonalData(teacherEntity.getPersonalData());
             _teacherEntity.setEmail(teacherEntity.getEmail());
             _teacherEntity.setCorrespondenceAddress(teacherEntity.getCorrespondenceAddress());
-            _teacherEntity.setFieldOfStudy(teacherEntity.getFieldOfStudy());
+            _teacherEntity.setClasses(teacherEntity.getClasses());
             _teacherEntity.setActive(teacherEntity.isActive());
 
             TeacherDto teacherDto = convertToDto(teacherRepository.save(_teacherEntity));

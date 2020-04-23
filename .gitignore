@@ -5,3 +5,5 @@ web/
 *.iml
 *.ipr
 *.csv
+/logs/
+.DS_Store

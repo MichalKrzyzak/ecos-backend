@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "FieldsOfStudy")
+@Table(name = "fields_of_study")
 public class FieldOfStudyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,8 +13,6 @@ public class FieldOfStudyEntity {
     @Column(name = "FOS_NAME")
     private String fieldOfStudy;
     @OneToMany(mappedBy = "fieldOfStudy")
-    private List<TeacherEntity> teachers;
-    @ManyToMany(mappedBy = "fieldsOfStudy")
     private List<StudentEntity> students;
     @OneToMany(mappedBy = "fieldOfStudy")
     private List<AssignmentEntity> assignments;
@@ -22,9 +20,8 @@ public class FieldOfStudyEntity {
     public FieldOfStudyEntity() {
     }
 
-    public FieldOfStudyEntity(String fieldOfStudy, List<TeacherEntity> teacher, List<StudentEntity> students, List<AssignmentEntity> assignments) {
+    public FieldOfStudyEntity(String fieldOfStudy, List<StudentEntity> students, List<AssignmentEntity> assignments) {
         this.fieldOfStudy = fieldOfStudy;
-        this.teachers = teacher;
         this.students = students;
         this.assignments = assignments;
     }
@@ -43,14 +40,6 @@ public class FieldOfStudyEntity {
 
     public void setFieldOfStudy(String fieldOfStudy) {
         this.fieldOfStudy = fieldOfStudy;
-    }
-
-    public List<TeacherEntity> getTeachers() {
-        return teachers;
-    }
-
-    public void setTeachers(List<TeacherEntity> teacher) {
-        this.teachers = teacher;
     }
 
     public List<StudentEntity> getStudents() {
@@ -74,7 +63,6 @@ public class FieldOfStudyEntity {
         return "FieldOfStudyEntity{" +
                 "id=" + id +
                 ", fieldOfStudy='" + fieldOfStudy + '\'' +
-                ", teachers=" + teachers +
                 ", students=" + students +
                 ", assignments=" + assignments +
                 '}';

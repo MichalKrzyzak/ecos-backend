@@ -1,6 +1,7 @@
 package com.ecos.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Teachers")
@@ -20,20 +21,24 @@ public class TeacherEntity {
             @AttributeOverride(name = "addressLine3", column = @Column(name = "correspondence_apartment_number"))
     })
     private AddressEntity correspondenceAddress;
-    @ManyToOne
-    @JoinColumn(name = "FOS_ID")
-    private FieldOfStudyEntity fieldOfStudy;
+    @ManyToMany
+    @JoinTable(name = "teacher_classes",
+            joinColumns = {@JoinColumn(name = "teacher_id")},
+            inverseJoinColumns = {@JoinColumn(name = "class_id")}
+    )
+    private List<ClassEntity> classes;
     @Column(nullable = false)
     private boolean isActive;
 
     public TeacherEntity() {
     }
 
-    public TeacherEntity(PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, FieldOfStudyEntity fieldOfStudy, boolean isActive) {
+    public TeacherEntity(long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, List<ClassEntity> classes, boolean isActive) {
+        this.id = id;
         this.personalData = personalData;
         this.email = email;
         this.correspondenceAddress = correspondenceAddress;
-        this.fieldOfStudy = fieldOfStudy;
+        this.classes = classes;
         this.isActive = isActive;
     }
 
@@ -69,12 +74,12 @@ public class TeacherEntity {
         this.correspondenceAddress = correspondenceAddress;
     }
 
-    public FieldOfStudyEntity getFieldOfStudy() {
-        return fieldOfStudy;
+    public List<ClassEntity> getClasses() {
+        return classes;
     }
 
-    public void setFieldOfStudy(FieldOfStudyEntity fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
+    public void setClasses(List<ClassEntity> classes) {
+        this.classes = classes;
     }
 
     public boolean isActive() {
@@ -92,7 +97,7 @@ public class TeacherEntity {
                 ", personalData=" + personalData +
                 ", email='" + email + '\'' +
                 ", correspondenceAddress=" + correspondenceAddress +
-                ", fieldOfStudy=" + fieldOfStudy +
+                ", classes=" + classes +
                 ", isActive=" + isActive +
                 '}';
     }

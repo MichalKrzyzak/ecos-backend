@@ -51,7 +51,7 @@ public class StudentServiceImpl implements StudentService<StudentDto, StudentEnt
     @Override
     public StudentDto create(@RequestBody StudentDto studentDto) {
         StudentEntity student = convertToEntity(studentDto);
-        return convertToDto(studentRepository.save(new StudentEntity(student.getPersonalData(), student.getEmail(), student.getCorrespondenceAddress(), student.getCollegeId(), student.getFieldsOfStudy(), student.getGrades(), student.isActive())));
+        return convertToDto(studentRepository.save(new StudentEntity(student.getId(), student.getPersonalData(), student.getEmail(), student.getCorrespondenceAddress(), student.getCollegeId(), student.getYearOfStudy(), student.getStudentsGroup(), student.getFieldsOfStudy(), student.getClasses(), student.getGrades(), student.isActive())));
     }
 
     @Override
@@ -73,7 +73,10 @@ public class StudentServiceImpl implements StudentService<StudentDto, StudentEnt
             _studentEntity.setEmail(studentEntity.getEmail());
             _studentEntity.setCorrespondenceAddress(studentEntity.getCorrespondenceAddress());
             _studentEntity.setCollegeId(studentEntity.getCollegeId());
+            _studentEntity.setYearOfStudy(studentEntity.getYearOfStudy());
+            _studentEntity.setStudentsGroup(studentEntity.getStudentsGroup());
             _studentEntity.setFieldsOfStudy(studentEntity.getFieldsOfStudy());
+            _studentEntity.setClasses(studentEntity.getClasses());
             _studentEntity.setGrades(studentEntity.getGrades());
             _studentEntity.setActive(studentEntity.isActive());
 

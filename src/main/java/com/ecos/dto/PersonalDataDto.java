@@ -4,14 +4,16 @@ public class PersonalDataDto {
     private String firstName;
     private String lastName;
     private long peselNumber;
+    private int phoneNumber;
 
     public PersonalDataDto() {
     }
 
-    public PersonalDataDto(String firstName, String lastName, long peselNumber) {
+    public PersonalDataDto(String firstName, String lastName, long peselNumber, int phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getFirstName() {
@@ -38,12 +40,21 @@ public class PersonalDataDto {
         this.peselNumber = peselNumber;
     }
 
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public String toString() {
         return "PersonalDataDto{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", peselNumber=" + peselNumber +
+                ", phoneNumber=" + phoneNumber +
                 '}';
     }
 }

@@ -21,14 +21,24 @@ public class StudentEntity {
             @AttributeOverride(name = "addressLine3", column = @Column(name = "correspondence_apartment_number"))
     })
     private AddressEntity correspondenceAddress;
-    @Column(nullable = false, name = "COLLEGE_ID")
+    @Column(nullable = false, unique = true, name = "COLLEGE_ID")
     private int collegeId;
-    @ManyToMany
-    @JoinTable(name = "students_field_of_study",
+    @Column
+    private String yearOfStudy;
+    @Column
+    private String studentsGroup;
+    @ManyToOne
+    @JoinTable(name = "student_fos",
             joinColumns = {@JoinColumn(name = "student_entity_student_id")},
             inverseJoinColumns = {@JoinColumn(name = "field_of_study_fos_id")}
     )
-    private List<FieldOfStudyEntity> fieldsOfStudy;
+    private FieldOfStudyEntity fieldOfStudy;
+    @ManyToMany
+    @JoinTable(name = "student_classes",
+            joinColumns = {@JoinColumn(name = "student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "class_id")}
+    )
+    private List<ClassEntity> classes;
     @OneToMany(mappedBy = "student")
     private List<GradeEntity> grades;
     private boolean isActive;
@@ -36,12 +46,16 @@ public class StudentEntity {
     public StudentEntity() {
     }
 
-    public StudentEntity(PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, int collegeId, List<FieldOfStudyEntity> fieldsOfStudy, List<GradeEntity> grades, boolean isActive) {
+    public StudentEntity(long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, int collegeId, String yearOfStudy, String studentsGroup, FieldOfStudyEntity fieldOfStudy, List<ClassEntity> classes, List<GradeEntity> grades, boolean isActive) {
+        this.id = id;
         this.personalData = personalData;
         this.email = email;
         this.correspondenceAddress = correspondenceAddress;
         this.collegeId = collegeId;
-        this.fieldsOfStudy = fieldsOfStudy;
+        this.yearOfStudy = yearOfStudy;
+        this.studentsGroup = studentsGroup;
+        this.fieldOfStudy = fieldOfStudy;
+        this.classes = classes;
         this.grades = grades;
         this.isActive = isActive;
     }
@@ -86,12 +100,36 @@ public class StudentEntity {
         this.collegeId = collegeId;
     }
 
-    public List<FieldOfStudyEntity> getFieldsOfStudy() {
-        return fieldsOfStudy;
+    public String getYearOfStudy() {
+        return yearOfStudy;
     }
 
-    public void setFieldsOfStudy(List<FieldOfStudyEntity> fieldsOfStudy) {
-        this.fieldsOfStudy = fieldsOfStudy;
+    public void setYearOfStudy(String yearOfStudy) {
+        this.yearOfStudy = yearOfStudy;
+    }
+
+    public String getStudentsGroup() {
+        return studentsGroup;
+    }
+
+    public void setStudentsGroup(String studentsGroup) {
+        this.studentsGroup = studentsGroup;
+    }
+
+    public FieldOfStudyEntity getFieldsOfStudy() {
+        return fieldOfStudy;
+    }
+
+    public void setFieldsOfStudy(FieldOfStudyEntity fieldOfStudy) {
+        this.fieldOfStudy = fieldOfStudy;
+    }
+
+    public List<ClassEntity> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(List<ClassEntity> classes) {
+        this.classes = classes;
     }
 
     public List<GradeEntity> getGrades() {
@@ -118,7 +156,10 @@ public class StudentEntity {
                 ", email='" + email + '\'' +
                 ", correspondenceAddress=" + correspondenceAddress +
                 ", collegeId=" + collegeId +
-                ", fieldsOfStudy=" + fieldsOfStudy +
+                ", yearOfStudy='" + yearOfStudy + '\'' +
+                ", studentsGroup='" + studentsGroup + '\'' +
+                ", fieldOfStudy=" + fieldOfStudy +
+                ", classes=" + classes +
                 ", grades=" + grades +
                 ", isActive=" + isActive +
                 '}';

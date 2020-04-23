@@ -1,27 +1,35 @@
 package com.ecos.dto;
 
+import com.ecos.model.*;
+
 import java.util.List;
 
 public class StudentDto {
     private long id;
-    private PersonalDataDto personalData;
+    private PersonalDataEntity personalData;
     private String email;
-    private AddressDto correspondenceAddress;
+    private AddressEntity correspondenceAddress;
     private int collegeId;
-    private List<FieldOfStudyDto> fieldsOfStudy;
-    private List<GradeDto> grades;
+    private String yearOfStudy;
+    private String studentsGroup;
+    private FieldOfStudyEntity fieldsOfStudy;
+    private List<ClassEntity> classes;
+    private List<GradeEntity> grades;
     private boolean isActive;
 
     public StudentDto() {
     }
 
-    public StudentDto(long id, PersonalDataDto personalData, String email, AddressDto correspondenceAddress, int collegeId, List<FieldOfStudyDto> fieldsOfStudy, List<GradeDto> grades, boolean isActive) {
+    public StudentDto(long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, int collegeId, String yearOfStudy, String studentsGroup, FieldOfStudyEntity fieldsOfStudy, List<ClassEntity> classes, List<GradeEntity> grades, boolean isActive) {
         this.id = id;
         this.personalData = personalData;
         this.email = email;
         this.correspondenceAddress = correspondenceAddress;
         this.collegeId = collegeId;
+        this.yearOfStudy = yearOfStudy;
+        this.studentsGroup = studentsGroup;
         this.fieldsOfStudy = fieldsOfStudy;
+        this.classes = classes;
         this.grades = grades;
         this.isActive = isActive;
     }
@@ -34,11 +42,11 @@ public class StudentDto {
         this.id = id;
     }
 
-    public PersonalDataDto getPersonalData() {
+    public PersonalDataEntity getPersonalData() {
         return personalData;
     }
 
-    public void setPersonalData(PersonalDataDto personalData) {
+    public void setPersonalData(PersonalDataEntity personalData) {
         this.personalData = personalData;
     }
 
@@ -50,11 +58,11 @@ public class StudentDto {
         this.email = email;
     }
 
-    public AddressDto getCorrespondenceAddress() {
+    public AddressEntity getCorrespondenceAddress() {
         return correspondenceAddress;
     }
 
-    public void setCorrespondenceAddress(AddressDto correspondenceAddress) {
+    public void setCorrespondenceAddress(AddressEntity correspondenceAddress) {
         this.correspondenceAddress = correspondenceAddress;
     }
 
@@ -66,19 +74,43 @@ public class StudentDto {
         this.collegeId = collegeId;
     }
 
-    public List<FieldOfStudyDto> getFieldsOfStudy() {
+    public String getYearOfStudy() {
+        return yearOfStudy;
+    }
+
+    public void setYearOfStudy(String yearOfStudy) {
+        this.yearOfStudy = yearOfStudy;
+    }
+
+    public String getStudentsGroup() {
+        return studentsGroup;
+    }
+
+    public void setStudentsGroup(String studentsGroup) {
+        this.studentsGroup = studentsGroup;
+    }
+
+    public FieldOfStudyEntity getFieldsOfStudy() {
         return fieldsOfStudy;
     }
 
-    public void setFieldsOfStudy(List<FieldOfStudyDto> fieldsOfStudy) {
+    public void setFieldsOfStudy(FieldOfStudyEntity fieldsOfStudy) {
         this.fieldsOfStudy = fieldsOfStudy;
     }
 
-    public List<GradeDto> getGrades() {
+    public List<ClassEntity> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(List<ClassEntity> classes) {
+        this.classes = classes;
+    }
+
+    public List<GradeEntity> getGrades() {
         return grades;
     }
 
-    public void setGrades(List<GradeDto> grades) {
+    public void setGrades(List<GradeEntity> grades) {
         this.grades = grades;
     }
 
@@ -98,7 +130,10 @@ public class StudentDto {
                 ", email='" + email + '\'' +
                 ", correspondenceAddress=" + correspondenceAddress +
                 ", collegeId=" + collegeId +
+                ", yearOfStudy='" + yearOfStudy + '\'' +
+                ", studentsGroup='" + studentsGroup + '\'' +
                 ", fieldsOfStudy=" + fieldsOfStudy +
+                ", classes=" + classes +
                 ", grades=" + grades +
                 ", isActive=" + isActive +
                 '}';

@@ -1,22 +1,28 @@
 package com.ecos.dto;
 
+import com.ecos.model.AddressEntity;
+import com.ecos.model.ClassEntity;
+import com.ecos.model.PersonalDataEntity;
+
+import java.util.List;
+
 public class TeacherDto {
     private long id;
-    private PersonalDataDto personalData;
+    private PersonalDataEntity personalData;
     private String email;
-    private AddressDto correspondenceAddress;
-    private FieldOfStudyDto fieldOfStudy;
+    private AddressEntity correspondenceAddress;
+    private List<ClassEntity> classes;
     private boolean isActive;
 
     public TeacherDto() {
     }
 
-    public TeacherDto(long id, PersonalDataDto personalData, String email, AddressDto correspondenceAddress, FieldOfStudyDto fieldOfStudy, boolean isActive) {
+    public TeacherDto(long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, List<ClassEntity> classes, boolean isActive) {
         this.id = id;
         this.personalData = personalData;
         this.email = email;
         this.correspondenceAddress = correspondenceAddress;
-        this.fieldOfStudy = fieldOfStudy;
+        this.classes = classes;
         this.isActive = isActive;
     }
 
@@ -28,11 +34,11 @@ public class TeacherDto {
         this.id = id;
     }
 
-    public PersonalDataDto getPersonalData() {
+    public PersonalDataEntity getPersonalData() {
         return personalData;
     }
 
-    public void setPersonalData(PersonalDataDto personalData) {
+    public void setPersonalData(PersonalDataEntity personalData) {
         this.personalData = personalData;
     }
 
@@ -44,20 +50,20 @@ public class TeacherDto {
         this.email = email;
     }
 
-    public AddressDto getCorrespondenceAddress() {
+    public AddressEntity getCorrespondenceAddress() {
         return correspondenceAddress;
     }
 
-    public void setCorrespondenceAddress(AddressDto correspondenceAddress) {
+    public void setCorrespondenceAddress(AddressEntity correspondenceAddress) {
         this.correspondenceAddress = correspondenceAddress;
     }
 
-    public FieldOfStudyDto getFieldOfStudy() {
-        return fieldOfStudy;
+    public List<ClassEntity> getClasses() {
+        return classes;
     }
 
-    public void setFieldOfStudy(FieldOfStudyDto fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
+    public void setClasses(List<ClassEntity> classes) {
+        this.classes = classes;
     }
 
     public boolean isActive() {
@@ -75,7 +81,7 @@ public class TeacherDto {
                 ", personalData=" + personalData +
                 ", email='" + email + '\'' +
                 ", correspondenceAddress=" + correspondenceAddress +
-                ", fieldOfStudy=" + fieldOfStudy +
+                ", classes=" + classes +
                 ", isActive=" + isActive +
                 '}';
     }
