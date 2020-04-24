@@ -27,13 +27,13 @@ public class StudentEntity {
     private String yearOfStudy;
     @Column
     private String studentsGroup;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinTable(name = "student_fos",
-            joinColumns = {@JoinColumn(name = "student_entity_student_id")},
-            inverseJoinColumns = {@JoinColumn(name = "field_of_study_fos_id")}
+            joinColumns = {@JoinColumn(name = "student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "fos_id")}
     )
     private FieldOfStudyEntity fieldOfStudy;
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "student_classes",
             joinColumns = {@JoinColumn(name = "student_id")},
             inverseJoinColumns = {@JoinColumn(name = "class_id")}

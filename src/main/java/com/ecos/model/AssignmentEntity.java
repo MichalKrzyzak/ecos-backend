@@ -15,15 +15,17 @@ public class AssignmentEntity {
     @Column(name = "assignment_date")
     private Date assessmentDate;
     @ManyToOne
-    @JoinColumn(name = "FOS_ID")
-    private FieldOfStudyEntity fieldOfStudy;
+    @JoinColumn(name = "CLASS_ID")
+    private ClassEntity classEntity;
 
     public AssignmentEntity() {
     }
 
-    public AssignmentEntity(String assignment, FieldOfStudyEntity fieldOfStudy) {
+    public AssignmentEntity(long id, String assignment, Date assessmentDate, ClassEntity classEntity) {
+        this.id = id;
         this.assignment = assignment;
-        this.fieldOfStudy = fieldOfStudy;
+        this.assessmentDate = assessmentDate;
+        this.classEntity = classEntity;
     }
 
     public long getId() {
@@ -50,12 +52,12 @@ public class AssignmentEntity {
         this.assessmentDate = assessmentDate;
     }
 
-    public FieldOfStudyEntity getFieldOfStudy() {
-        return fieldOfStudy;
+    public ClassEntity getClassEntity() {
+        return classEntity;
     }
 
-    public void setFieldOfStudy(FieldOfStudyEntity fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
+    public void setClassEntity(ClassEntity classEntity) {
+        this.classEntity = classEntity;
     }
 
     @Override
@@ -64,7 +66,7 @@ public class AssignmentEntity {
                 "id=" + id +
                 ", assignment='" + assignment + '\'' +
                 ", assessmentDate=" + assessmentDate +
-                ", fieldOfStudy=" + fieldOfStudy +
+                ", classEntity=" + classEntity +
                 '}';
     }
 }

@@ -13,7 +13,7 @@ public class PersonalDataEntity {
     @Column(nullable = false)
     private String lastName;
     @Size(max = 11)
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private long peselNumber;
     @Size(max = 9)
     @Column(nullable = false)

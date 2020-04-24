@@ -1,7 +1,6 @@
 package com.ecos.controller;
 
 import com.ecos.dto.StudentDto;
-import com.ecos.service.student.StudentService;
 import com.ecos.service.student.StudentServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

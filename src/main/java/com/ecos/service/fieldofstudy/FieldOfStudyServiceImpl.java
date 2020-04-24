@@ -35,7 +35,7 @@ public class FieldOfStudyServiceImpl implements FieldOfStudyService<FieldOfStudy
     @Override
     public FieldOfStudyDto create(@RequestBody FieldOfStudyDto fieldOfStudyDto) {
         FieldOfStudyEntity fieldOfStudy = convertToEntity(fieldOfStudyDto);
-        return convertToDto(fieldOfStudyRepository.save(new FieldOfStudyEntity(fieldOfStudy.getId(), fieldOfStudy.getFieldOfStudy(), fieldOfStudy.getStudents(), fieldOfStudy.getAssignments())));
+        return convertToDto(fieldOfStudyRepository.save(new FieldOfStudyEntity(fieldOfStudy.getId(), fieldOfStudy.getFieldOfStudy(), fieldOfStudy.getStudents(), fieldOfStudy.getClasses())));
     }
 
     @Override

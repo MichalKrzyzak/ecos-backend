@@ -15,15 +15,16 @@ public class FieldOfStudyEntity {
     @OneToMany(mappedBy = "fieldOfStudy")
     private List<StudentEntity> students;
     @OneToMany(mappedBy = "fieldOfStudy")
-    private List<AssignmentEntity> assignments;
+    private List<ClassEntity> classes;
 
     public FieldOfStudyEntity() {
     }
 
-    public FieldOfStudyEntity(String fieldOfStudy, List<StudentEntity> students, List<AssignmentEntity> assignments) {
+    public FieldOfStudyEntity(long id, String fieldOfStudy, List<StudentEntity> students, List<ClassEntity> classes) {
+        this.id = id;
         this.fieldOfStudy = fieldOfStudy;
         this.students = students;
-        this.assignments = assignments;
+        this.classes = classes;
     }
 
     public long getId() {
@@ -50,12 +51,12 @@ public class FieldOfStudyEntity {
         this.students = students;
     }
 
-    public List<AssignmentEntity> getAssignments() {
-        return assignments;
+    public List<ClassEntity> getClasses() {
+        return classes;
     }
 
-    public void setAssignments(List<AssignmentEntity> assignments) {
-        this.assignments = assignments;
+    public void setClasses(List<ClassEntity> classes) {
+        this.classes = classes;
     }
 
     @Override
@@ -64,7 +65,7 @@ public class FieldOfStudyEntity {
                 "id=" + id +
                 ", fieldOfStudy='" + fieldOfStudy + '\'' +
                 ", students=" + students +
-                ", assignments=" + assignments +
+                ", classes=" + classes +
                 '}';
     }
 }
