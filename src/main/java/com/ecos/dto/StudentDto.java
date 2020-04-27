@@ -5,7 +5,7 @@ import com.ecos.model.*;
 import java.util.List;
 
 public class StudentDto {
-    private long id;
+    private Long id;
     private PersonalDataEntity personalData;
     private String email;
     private AddressEntity correspondenceAddress;
@@ -20,7 +20,7 @@ public class StudentDto {
     public StudentDto() {
     }
 
-    public StudentDto(long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, int collegeId, String yearOfStudy, String studentsGroup, FieldOfStudyEntity fieldsOfStudy, List<ClassEntity> classes, List<GradeEntity> grades, boolean isActive) {
+    public StudentDto(Long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, int collegeId, String yearOfStudy, String studentsGroup, FieldOfStudyEntity fieldsOfStudy, List<ClassEntity> classes, List<GradeEntity> grades, boolean isActive) {
         this.id = id;
         this.personalData = personalData;
         this.email = email;
@@ -34,11 +34,11 @@ public class StudentDto {
         this.isActive = isActive;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

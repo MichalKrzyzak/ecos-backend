@@ -8,12 +8,12 @@ import javax.validation.constraints.Size;
 public class AddressEntity {
     @Size(max = 100)
     @Column(nullable = false)
-    private String addressLine1;
+    private String correspondence_street;
     @Size(max = 100)
     @Column(nullable = false)
-    private String addressLine2;
+    private String correspondence_house_number;
     @Size(max = 100)
-    private String addressLine3;
+    private String correspondence_apartment_number;
     @Size(max = 100)
     @Column(nullable = false)
     private String city;
@@ -27,37 +27,37 @@ public class AddressEntity {
     public AddressEntity() {
     }
 
-    public AddressEntity(String addressLine1, String addressLine2, String addressLine3, String city, String voivodeship, String zipCode) {
-        this.addressLine1 = addressLine1;
-        this.addressLine2 = addressLine2;
-        this.addressLine3 = addressLine3;
+    public AddressEntity(String correspondence_street, String correspondence_house_number, String correspondence_apartment_number, String city, String voivodeship, String zipCode) {
+        this.correspondence_street = correspondence_street;
+        this.correspondence_house_number = correspondence_house_number;
+        this.correspondence_apartment_number = correspondence_apartment_number;
         this.city = city;
         this.voivodeship = voivodeship;
         this.zipCode = zipCode;
     }
 
-    public String getAddressLine1() {
-        return addressLine1;
+    public String getCorrespondence_street() {
+        return correspondence_street;
     }
 
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
+    public void setCorrespondence_street(String correspondence_street) {
+        this.correspondence_street = correspondence_street;
     }
 
-    public String getAddressLine2() {
-        return addressLine2;
+    public String getCorrespondence_house_number() {
+        return correspondence_house_number;
     }
 
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
+    public void setCorrespondence_house_number(String correspondence_house_number) {
+        this.correspondence_house_number = correspondence_house_number;
     }
 
     public String getAddressLine3() {
-        return addressLine3;
+        return correspondence_apartment_number;
     }
 
     public void setAddressLine3(String addressLine3) {
-        this.addressLine3 = addressLine3;
+        this.correspondence_apartment_number = addressLine3;
     }
 
     public String getCity() {
@@ -87,9 +87,9 @@ public class AddressEntity {
     @Override
     public String toString() {
         return "Address{" +
-                "addressLine1='" + addressLine1 + '\'' +
-                ", addressLine2='" + addressLine2 + '\'' +
-                ", addressLine3='" + addressLine3 + '\'' +
+                "addressLine1='" + correspondence_street + '\'' +
+                ", addressLine2='" + correspondence_house_number + '\'' +
+                ", addressLine3='" + correspondence_apartment_number + '\'' +
                 ", city='" + city + '\'' +
                 ", voivodeship='" + voivodeship + '\'' +
                 ", zipCode='" + zipCode + '\'' +

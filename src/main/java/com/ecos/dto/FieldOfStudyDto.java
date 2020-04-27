@@ -3,7 +3,7 @@ package com.ecos.dto;
 import java.util.List;
 
 public class FieldOfStudyDto {
-    private long id;
+    private Long id;
     private String fieldOfStudy;
     private List<StudentDto> students;
     private List<ClassDto> classes;
@@ -11,14 +11,14 @@ public class FieldOfStudyDto {
     public FieldOfStudyDto() {
     }
 
-    public FieldOfStudyDto(long id, String fieldOfStudy, List<StudentDto> students, List<ClassDto> classes) {
+    public FieldOfStudyDto(Long id, String fieldOfStudy, List<StudentDto> students, List<ClassDto> classes) {
         this.id = id;
         this.fieldOfStudy = fieldOfStudy;
         this.students = students;
         this.classes = classes;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

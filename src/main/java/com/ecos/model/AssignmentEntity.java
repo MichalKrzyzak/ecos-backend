@@ -9,30 +9,30 @@ public class AssignmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "assignment_id", nullable = false)
-    private long id;
+    private Long id;
     @Column(name = "assignment_name")
     private String assignment;
     @Column(name = "assignment_date")
     private Date assessmentDate;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CLASS_ID")
     private ClassEntity classEntity;
 
     public AssignmentEntity() {
     }
 
-    public AssignmentEntity(long id, String assignment, Date assessmentDate, ClassEntity classEntity) {
+    public AssignmentEntity(Long id, String assignment, Date assessmentDate, ClassEntity classEntity) {
         this.id = id;
         this.assignment = assignment;
         this.assessmentDate = assessmentDate;
         this.classEntity = classEntity;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

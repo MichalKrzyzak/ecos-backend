@@ -1,7 +1,7 @@
 package com.ecos.dto;
 
 public class GradeDto {
-    private long id;
+    private Long id;
     private int grade;
     private FieldOfStudyDto fieldOfStudy;
     private AssignmentDto assignment;
@@ -10,7 +10,7 @@ public class GradeDto {
     public GradeDto() {
     }
 
-    public GradeDto(long id, int grade, FieldOfStudyDto fieldOfStudy, AssignmentDto assignment, StudentDto student) {
+    public GradeDto(Long id, int grade, FieldOfStudyDto fieldOfStudy, AssignmentDto assignment, StudentDto student) {
         this.id = id;
         this.grade = grade;
         this.fieldOfStudy = fieldOfStudy;
@@ -18,11 +18,11 @@ public class GradeDto {
         this.student = student;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

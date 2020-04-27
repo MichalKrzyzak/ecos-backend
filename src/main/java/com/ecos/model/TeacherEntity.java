@@ -9,19 +9,14 @@ public class TeacherEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TEACHER_ID", nullable = false)
-    private long id;
+    private Long id;
     @Embedded
     private PersonalDataEntity personalData;
     @Column(unique = true)
     private String email;
     @Embedded
-    @AttributeOverrides(value = {
-            @AttributeOverride(name = "addressLine1", column = @Column(name = "correspondence_street")),
-            @AttributeOverride(name = "addressLine2", column = @Column(name = "correspondence_house_number")),
-            @AttributeOverride(name = "addressLine3", column = @Column(name = "correspondence_apartment_number"))
-    })
     private AddressEntity correspondenceAddress;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "teacher_classes",
             joinColumns = {@JoinColumn(name = "teacher_id")},
             inverseJoinColumns = {@JoinColumn(name = "class_id")}
@@ -33,7 +28,7 @@ public class TeacherEntity {
     public TeacherEntity() {
     }
 
-    public TeacherEntity(long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, List<ClassEntity> classes, boolean isActive) {
+    public TeacherEntity(Long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, List<ClassEntity> classes, boolean isActive) {
         this.id = id;
         this.personalData = personalData;
         this.email = email;
@@ -42,11 +37,11 @@ public class TeacherEntity {
         this.isActive = isActive;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -37,13 +37,13 @@ public class StudentServiceImpl implements StudentService<StudentDto, StudentEnt
     }
 
     @Override
-    public Optional<StudentDto> getById(long id) {
+    public Optional<StudentDto> getById(Long id) {
         Optional<StudentEntity> student = studentRepository.findById(id);
         return student.map(this::convertToDto);
     }
 
     @Override
-    public ResponseEntity<String> deleteById(@PathVariable("id") long id) {
+    public ResponseEntity<String> deleteById(@PathVariable("id") Long id) {
         studentRepository.deleteById(id);
         return new ResponseEntity<>("Student has been deleted successfully", HttpStatus.OK);
     }
@@ -55,7 +55,7 @@ public class StudentServiceImpl implements StudentService<StudentDto, StudentEnt
     }
 
     @Override
-    public ResponseEntity<StudentDto> updateById(@PathVariable("id") long id, @RequestBody StudentDto studentDto) {
+    public ResponseEntity<StudentDto> updateById(@PathVariable("id") Long id, @RequestBody StudentDto studentDto) {
         System.out.println("Updating student ID: " + id + "..." + studentDto.toString());
         StudentEntity studentEntity = convertToEntity(studentDto);
         Optional<StudentEntity> studentData = studentRepository.findById(id);

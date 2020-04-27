@@ -35,12 +35,12 @@ public class TeacherServiceImpl implements TeacherService<TeacherDto, TeacherEnt
                 .collect(Collectors.toList());
     }
 
-    public Optional<TeacherDto> getById(long id) {
+    public Optional<TeacherDto> getById(Long id) {
         Optional<TeacherEntity> teacher = teacherRepository.findById(id);
         return teacher.map(this::convertToDto);
     }
 
-    public ResponseEntity<String> deleteById(@PathVariable("id") long id) {
+    public ResponseEntity<String> deleteById(@PathVariable("id") Long id) {
         teacherRepository.deleteById(id);
         return new ResponseEntity<>("Teacher has been deleted successfully", HttpStatus.OK);
     }
@@ -50,7 +50,7 @@ public class TeacherServiceImpl implements TeacherService<TeacherDto, TeacherEnt
         return convertToDto(teacherRepository.save(new TeacherEntity(teacher.getId(), teacher.getPersonalData(), teacher.getEmail(), teacher.getCorrespondenceAddress(), teacher.getClasses(), teacher.isActive())));
     }
 
-    public ResponseEntity<TeacherDto> updateById(@PathVariable("id") long id, @RequestBody TeacherDto teacherDto) {
+    public ResponseEntity<TeacherDto> updateById(@PathVariable("id") Long id, @RequestBody TeacherDto teacherDto) {
         System.out.println("Updating teacher ID: " + id + "..." + teacherDto.toString());
         TeacherEntity teacherEntity = convertToEntity(teacherDto);
         Optional<TeacherEntity> teacherData = teacherRepository.findById(id);

@@ -8,14 +8,14 @@ public class GradeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "grade_id", nullable = false)
-    private long id;
+    private Long id;
     @Column(name = "grade")
     private int grade;
     @OneToOne
     private FieldOfStudyEntity fieldOfStudy;
     @OneToOne
     private AssignmentEntity assignment;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "STUDENT_ID")
     private StudentEntity student;
 
@@ -29,11 +29,11 @@ public class GradeEntity {
         this.student = student;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

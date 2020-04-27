@@ -3,7 +3,7 @@ package com.ecos.dto;
 import java.util.Date;
 
 public class AssignmentDto {
-    private long id;
+    private Long id;
     private String assignment;
     private Date assessmentDate;
     private ClassDto classDto;
@@ -11,18 +11,18 @@ public class AssignmentDto {
     public AssignmentDto() {
     }
 
-    public AssignmentDto(long id, String assignment, Date assessmentDate, ClassDto classDto) {
+    public AssignmentDto(Long id, String assignment, Date assessmentDate, ClassDto classDto) {
         this.id = id;
         this.assignment = assignment;
         this.assessmentDate = assessmentDate;
         this.classDto = classDto;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

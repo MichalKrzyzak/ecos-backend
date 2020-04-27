@@ -9,17 +9,12 @@ public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "STUDENT_ID", nullable = false)
-    private long id;
+    private Long id;
     @Embedded
     private PersonalDataEntity personalData;
     @Column(unique = true)
     private String email;
     @Embedded
-    @AttributeOverrides(value = {
-            @AttributeOverride(name = "addressLine1", column = @Column(name = "correspondence_street")),
-            @AttributeOverride(name = "addressLine2", column = @Column(name = "correspondence_house_number")),
-            @AttributeOverride(name = "addressLine3", column = @Column(name = "correspondence_apartment_number"))
-    })
     private AddressEntity correspondenceAddress;
     @Column(nullable = false, unique = true, name = "COLLEGE_ID")
     private int collegeId;
@@ -27,26 +22,26 @@ public class StudentEntity {
     private String yearOfStudy;
     @Column
     private String studentsGroup;
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "student_fos",
             joinColumns = {@JoinColumn(name = "student_id")},
             inverseJoinColumns = {@JoinColumn(name = "fos_id")}
     )
     private FieldOfStudyEntity fieldOfStudy;
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "student_classes",
             joinColumns = {@JoinColumn(name = "student_id")},
             inverseJoinColumns = {@JoinColumn(name = "class_id")}
     )
     private List<ClassEntity> classes;
-    @OneToMany(mappedBy = "student")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<GradeEntity> grades;
     private boolean isActive;
 
     public StudentEntity() {
     }
 
-    public StudentEntity(long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, int collegeId, String yearOfStudy, String studentsGroup, FieldOfStudyEntity fieldOfStudy, List<ClassEntity> classes, List<GradeEntity> grades, boolean isActive) {
+    public StudentEntity(Long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, int collegeId, String yearOfStudy, String studentsGroup, FieldOfStudyEntity fieldOfStudy, List<ClassEntity> classes, List<GradeEntity> grades, boolean isActive) {
         this.id = id;
         this.personalData = personalData;
         this.email = email;
@@ -60,11 +55,11 @@ public class StudentEntity {
         this.isActive = isActive;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

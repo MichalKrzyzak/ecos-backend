@@ -7,7 +7,7 @@ import com.ecos.model.PersonalDataEntity;
 import java.util.List;
 
 public class TeacherDto {
-    private long id;
+    private Long id;
     private PersonalDataEntity personalData;
     private String email;
     private AddressEntity correspondenceAddress;
@@ -17,7 +17,7 @@ public class TeacherDto {
     public TeacherDto() {
     }
 
-    public TeacherDto(long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, List<ClassEntity> classes, boolean isActive) {
+    public TeacherDto(Long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, List<ClassEntity> classes, boolean isActive) {
         this.id = id;
         this.personalData = personalData;
         this.email = email;
@@ -26,11 +26,11 @@ public class TeacherDto {
         this.isActive = isActive;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

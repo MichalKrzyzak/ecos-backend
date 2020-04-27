@@ -9,29 +9,29 @@ public class FieldOfStudyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FOS_ID", nullable = false)
-    private long id;
+    private Long id;
     @Column(name = "FOS_NAME")
     private String fieldOfStudy;
-    @OneToMany(mappedBy = "fieldOfStudy")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fieldOfStudy")
     private List<StudentEntity> students;
-    @OneToMany(mappedBy = "fieldOfStudy")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fieldOfStudy")
     private List<ClassEntity> classes;
 
     public FieldOfStudyEntity() {
     }
 
-    public FieldOfStudyEntity(long id, String fieldOfStudy, List<StudentEntity> students, List<ClassEntity> classes) {
+    public FieldOfStudyEntity(Long id, String fieldOfStudy, List<StudentEntity> students, List<ClassEntity> classes) {
         this.id = id;
         this.fieldOfStudy = fieldOfStudy;
         this.students = students;
         this.classes = classes;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

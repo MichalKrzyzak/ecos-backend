@@ -9,23 +9,23 @@ public class ClassEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CLASS_ID", nullable = false)
-    private long id;
+    private Long id;
     @Column(nullable = false)
     private String className;
-    @ManyToMany(mappedBy = "classes")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "classes")
     private List<StudentEntity> students;
-    @ManyToMany(mappedBy = "classes")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "classes")
     private List<TeacherEntity> teachers;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "FOS_ID")
     private FieldOfStudyEntity fieldOfStudy;
-    @OneToMany(mappedBy = "classEntity")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "classEntity")
     private List<AssignmentEntity> assignments;
 
     public ClassEntity() {
     }
 
-    public ClassEntity(long id, String className, List<StudentEntity> students, List<TeacherEntity> teachers, FieldOfStudyEntity fieldOfStudy, List<AssignmentEntity> assignments) {
+    public ClassEntity(Long id, String className, List<StudentEntity> students, List<TeacherEntity> teachers, FieldOfStudyEntity fieldOfStudy, List<AssignmentEntity> assignments) {
         this.id = id;
         this.className = className;
         this.students = students;
@@ -34,11 +34,11 @@ public class ClassEntity {
         this.assignments = assignments;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

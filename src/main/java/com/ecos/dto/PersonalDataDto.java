@@ -3,13 +3,13 @@ package com.ecos.dto;
 public class PersonalDataDto {
     private String firstName;
     private String lastName;
-    private long peselNumber;
+    private Long peselNumber;
     private int phoneNumber;
 
     public PersonalDataDto() {
     }
 
-    public PersonalDataDto(String firstName, String lastName, long peselNumber, int phoneNumber) {
+    public PersonalDataDto(String firstName, String lastName, Long peselNumber, int phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
@@ -32,11 +32,11 @@ public class PersonalDataDto {
         this.lastName = lastName;
     }
 
-    public long getPeselNumber() {
+    public Long getPeselNumber() {
         return peselNumber;
     }
 
-    public void setPeselNumber(long peselNumber) {
+    public void setPeselNumber(Long peselNumber) {
         this.peselNumber = peselNumber;
     }
 
