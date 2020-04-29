@@ -1,17 +1,19 @@
 package com.ecos.dto;
 
+import com.ecos.dto.simple.ClassSimpleDto;
+
 import java.util.Date;
 
 public class AssignmentDto {
     private Long id;
     private String assignment;
     private Date assessmentDate;
-    private ClassDto classDto;
+    private ClassSimpleDto classDto;
 
     public AssignmentDto() {
     }
 
-    public AssignmentDto(Long id, String assignment, Date assessmentDate, ClassDto classDto) {
+    public AssignmentDto(Long id, String assignment, Date assessmentDate, ClassSimpleDto classDto) {
         this.id = id;
         this.assignment = assignment;
         this.assessmentDate = assessmentDate;
@@ -42,21 +44,12 @@ public class AssignmentDto {
         this.assessmentDate = assessmentDate;
     }
 
-    public ClassDto getClassDto() {
+    public ClassSimpleDto getClassDto() {
         return classDto;
     }
 
-    public void setClassDto(ClassDto classDto) {
+    public void setClassDto(ClassSimpleDto classDto) {
         this.classDto = classDto;
     }
 
-    @Override
-    public String toString() {
-        return "AssignmentDto{" +
-                "id=" + id +
-                ", assignment='" + assignment + '\'' +
-                ", assessmentDate=" + assessmentDate +
-                ", classDto=" + classDto +
-                '}';
-    }
 }

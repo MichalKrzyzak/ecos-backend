@@ -33,8 +33,7 @@ public class GradeServiceImpl implements GradeService<GradeDto, GradeEntity> {
 
     public GradeDto create(@RequestBody GradeDto gradeDto) {
         GradeEntity gradeEntity = convertToEntity(gradeDto);
-
-        return convertToDto(gradeRepository.save(new GradeEntity(gradeEntity.getGrade(), gradeEntity.getFieldOfStudy(), gradeEntity.getAssignment(), gradeEntity.getStudent())));
+        return convertToDto(gradeRepository.save(gradeEntity));
     }
 
     @Override

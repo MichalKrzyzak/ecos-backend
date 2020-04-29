@@ -12,7 +12,7 @@ public class FieldOfStudyEntity {
     private Long id;
     @Column(name = "FOS_NAME")
     private String fieldOfStudy;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fieldOfStudy")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fieldOfStudy", fetch = FetchType.LAZY)
     private List<StudentEntity> students;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fieldOfStudy")
     private List<ClassEntity> classes;
@@ -59,13 +59,4 @@ public class FieldOfStudyEntity {
         this.classes = classes;
     }
 
-    @Override
-    public String toString() {
-        return "FieldOfStudyEntity{" +
-                "id=" + id +
-                ", fieldOfStudy='" + fieldOfStudy + '\'' +
-                ", students=" + students +
-                ", classes=" + classes +
-                '}';
-    }
 }

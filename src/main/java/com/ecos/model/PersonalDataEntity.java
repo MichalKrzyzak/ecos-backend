@@ -14,7 +14,7 @@ public class PersonalDataEntity {
     private String lastName;
     @Size(max = 11)
     @Column(nullable = false, unique = true)
-    private Long peselNumber;
+    private String peselNumber;
     @Size(max = 9)
     @Column(nullable = false)
     private int phoneNumber;
@@ -22,7 +22,7 @@ public class PersonalDataEntity {
     public PersonalDataEntity() {
     }
 
-    public PersonalDataEntity(@Size(max = 25) String firstName, @Size(max = 25) String lastName, @Size(max = 11) Long peselNumber, @Size(max = 9) int phoneNumber) {
+    public PersonalDataEntity(@Size(max = 25) String firstName, @Size(max = 25) String lastName, @Size(max = 11) String peselNumber, @Size(max = 9) int phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.peselNumber = peselNumber;
@@ -45,11 +45,11 @@ public class PersonalDataEntity {
         this.lastName = lastName;
     }
 
-    public Long getPeselNumber() {
+    public String getPeselNumber() {
         return peselNumber;
     }
 
-    public void setPeselNumber(Long peselNumber) {
+    public void setPeselNumber(String peselNumber) {
         this.peselNumber = peselNumber;
     }
 
@@ -61,13 +61,4 @@ public class PersonalDataEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    @Override
-    public String toString() {
-        return "PersonalDataEntity{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", peselNumber=" + peselNumber +
-                ", phoneNumber=" + phoneNumber +
-                '}';
-    }
 }

@@ -35,7 +35,7 @@ public class ClassServiceImpl implements ClassService<ClassDto, ClassEntity> {
     @Override
     public ClassDto create(@RequestBody ClassDto classDto) {
         ClassEntity classEntity = convertToEntity(classDto);
-        return convertToDto(classRepository.save(new ClassEntity(classEntity.getId(), classEntity.getClassName(), classEntity.getStudents(), classEntity.getTeachers(), classEntity.getFieldOfStudy(), classEntity.getAssignments())));
+        return convertToDto(classRepository.save(classEntity));
     }
 
     @Override

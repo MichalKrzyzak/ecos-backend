@@ -60,13 +60,4 @@ public class AssignmentEntity {
         this.classEntity = classEntity;
     }
 
-    @Override
-    public String toString() {
-        return "AssignmentEntity{" +
-                "id=" + id +
-                ", assignment='" + assignment + '\'' +
-                ", assessmentDate=" + assessmentDate +
-                ", classEntity=" + classEntity +
-                '}';
-    }
 }

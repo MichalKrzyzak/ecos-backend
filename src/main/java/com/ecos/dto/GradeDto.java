@@ -58,14 +58,4 @@ public class GradeDto {
         this.student = student;
     }
 
-    @Override
-    public String toString() {
-        return "GradeDto{" +
-                "id=" + id +
-                ", grade=" + grade +
-                ", fieldOfStudy=" + fieldOfStudy +
-                ", assignment=" + assignment +
-                ", student=" + student +
-                '}';
-    }
 }

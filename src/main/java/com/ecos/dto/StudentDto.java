@@ -1,26 +1,28 @@
 package com.ecos.dto;
 
-import com.ecos.model.*;
+import com.ecos.dto.simple.ClassSimpleDto;
+import com.ecos.dto.simple.FosSimpleDto;
+import com.ecos.dto.simple.GradeSimpleDto;
 
 import java.util.List;
 
 public class StudentDto {
     private Long id;
-    private PersonalDataEntity personalData;
+    private PersonalDataDto personalData;
     private String email;
-    private AddressEntity correspondenceAddress;
+    private AddressDto correspondenceAddress;
     private int collegeId;
     private String yearOfStudy;
     private String studentsGroup;
-    private FieldOfStudyEntity fieldsOfStudy;
-    private List<ClassEntity> classes;
-    private List<GradeEntity> grades;
+    private FosSimpleDto fieldsOfStudy;
+    private List<ClassSimpleDto> classes;
+    private List<GradeSimpleDto> grades;
     private boolean isActive;
 
     public StudentDto() {
     }
 
-    public StudentDto(Long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, int collegeId, String yearOfStudy, String studentsGroup, FieldOfStudyEntity fieldsOfStudy, List<ClassEntity> classes, List<GradeEntity> grades, boolean isActive) {
+    public StudentDto(Long id, PersonalDataDto personalData, String email, AddressDto correspondenceAddress, int collegeId, String yearOfStudy, String studentsGroup, FosSimpleDto fieldsOfStudy, List<ClassSimpleDto> classes, List<GradeSimpleDto> grades, boolean isActive) {
         this.id = id;
         this.personalData = personalData;
         this.email = email;
@@ -42,11 +44,11 @@ public class StudentDto {
         this.id = id;
     }
 
-    public PersonalDataEntity getPersonalData() {
+    public PersonalDataDto getPersonalData() {
         return personalData;
     }
 
-    public void setPersonalData(PersonalDataEntity personalData) {
+    public void setPersonalData(PersonalDataDto personalData) {
         this.personalData = personalData;
     }
 
@@ -58,11 +60,11 @@ public class StudentDto {
         this.email = email;
     }
 
-    public AddressEntity getCorrespondenceAddress() {
+    public AddressDto getCorrespondenceAddress() {
         return correspondenceAddress;
     }
 
-    public void setCorrespondenceAddress(AddressEntity correspondenceAddress) {
+    public void setCorrespondenceAddress(AddressDto correspondenceAddress) {
         this.correspondenceAddress = correspondenceAddress;
     }
 
@@ -90,27 +92,27 @@ public class StudentDto {
         this.studentsGroup = studentsGroup;
     }
 
-    public FieldOfStudyEntity getFieldsOfStudy() {
+    public FosSimpleDto getFieldsOfStudy() {
         return fieldsOfStudy;
     }
 
-    public void setFieldsOfStudy(FieldOfStudyEntity fieldsOfStudy) {
+    public void setFieldsOfStudy(FosSimpleDto fieldsOfStudy) {
         this.fieldsOfStudy = fieldsOfStudy;
     }
 
-    public List<ClassEntity> getClasses() {
+    public List<ClassSimpleDto> getClasses() {
         return classes;
     }
 
-    public void setClasses(List<ClassEntity> classes) {
+    public void setClasses(List<ClassSimpleDto> classes) {
         this.classes = classes;
     }
 
-    public List<GradeEntity> getGrades() {
+    public List<GradeSimpleDto> getGrades() {
         return grades;
     }
 
-    public void setGrades(List<GradeEntity> grades) {
+    public void setGrades(List<GradeSimpleDto> grades) {
         this.grades = grades;
     }
 
@@ -120,22 +122,5 @@ public class StudentDto {
 
     public void setActive(boolean active) {
         isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "StudentDto{" +
-                "id=" + id +
-                ", personalData=" + personalData +
-                ", email='" + email + '\'' +
-                ", correspondenceAddress=" + correspondenceAddress +
-                ", collegeId=" + collegeId +
-                ", yearOfStudy='" + yearOfStudy + '\'' +
-                ", studentsGroup='" + studentsGroup + '\'' +
-                ", fieldsOfStudy=" + fieldsOfStudy +
-                ", classes=" + classes +
-                ", grades=" + grades +
-                ", isActive=" + isActive +
-                '}';
     }
 }

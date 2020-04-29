@@ -35,7 +35,7 @@ public class AssignmentServiceImpl implements AssignmentService<AssignmentDto, A
     @Override
     public AssignmentDto create(@RequestBody AssignmentDto assignmentDto) {
         AssignmentEntity assignment = convertToEntity(assignmentDto);
-        return convertToDto(assignmentRepository.save(new AssignmentEntity(assignment.getId(), assignment.getAssignment(), assignment.getAssessmentDate(), assignment.getClassEntity())));
+        return convertToDto(assignmentRepository.save(assignment));
     }
 
     @Override

@@ -22,7 +22,7 @@ public class StudentEntity {
     private String yearOfStudy;
     @Column
     private String studentsGroup;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "student_fos",
             joinColumns = {@JoinColumn(name = "student_id")},
             inverseJoinColumns = {@JoinColumn(name = "fos_id")}

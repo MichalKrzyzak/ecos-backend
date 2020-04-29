@@ -1,23 +1,21 @@
 package com.ecos.dto;
 
-import com.ecos.model.AddressEntity;
-import com.ecos.model.ClassEntity;
-import com.ecos.model.PersonalDataEntity;
+import com.ecos.dto.simple.ClassSimpleDto;
 
 import java.util.List;
 
 public class TeacherDto {
     private Long id;
-    private PersonalDataEntity personalData;
+    private PersonalDataDto personalData;
     private String email;
-    private AddressEntity correspondenceAddress;
-    private List<ClassEntity> classes;
+    private AddressDto correspondenceAddress;
+    private List<ClassSimpleDto> classes;
     private boolean isActive;
 
     public TeacherDto() {
     }
 
-    public TeacherDto(Long id, PersonalDataEntity personalData, String email, AddressEntity correspondenceAddress, List<ClassEntity> classes, boolean isActive) {
+    public TeacherDto(Long id, PersonalDataDto personalData, String email, AddressDto correspondenceAddress, List<ClassSimpleDto> classes, boolean isActive) {
         this.id = id;
         this.personalData = personalData;
         this.email = email;
@@ -34,11 +32,11 @@ public class TeacherDto {
         this.id = id;
     }
 
-    public PersonalDataEntity getPersonalData() {
+    public PersonalDataDto getPersonalData() {
         return personalData;
     }
 
-    public void setPersonalData(PersonalDataEntity personalData) {
+    public void setPersonalData(PersonalDataDto personalData) {
         this.personalData = personalData;
     }
 
@@ -50,19 +48,19 @@ public class TeacherDto {
         this.email = email;
     }
 
-    public AddressEntity getCorrespondenceAddress() {
+    public AddressDto getCorrespondenceAddress() {
         return correspondenceAddress;
     }
 
-    public void setCorrespondenceAddress(AddressEntity correspondenceAddress) {
+    public void setCorrespondenceAddress(AddressDto correspondenceAddress) {
         this.correspondenceAddress = correspondenceAddress;
     }
 
-    public List<ClassEntity> getClasses() {
+    public List<ClassSimpleDto> getClasses() {
         return classes;
     }
 
-    public void setClasses(List<ClassEntity> classes) {
+    public void setClasses(List<ClassSimpleDto> classes) {
         this.classes = classes;
     }
 
@@ -72,17 +70,5 @@ public class TeacherDto {
 
     public void setActive(boolean active) {
         isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "TeacherDto{" +
-                "id=" + id +
-                ", personalData=" + personalData +
-                ", email='" + email + '\'' +
-                ", correspondenceAddress=" + correspondenceAddress +
-                ", classes=" + classes +
-                ", isActive=" + isActive +
-                '}';
     }
 }

@@ -85,15 +85,4 @@ public class TeacherEntity {
         isActive = active;
     }
 
-    @Override
-    public String toString() {
-        return "TeacherEntity{" +
-                "id=" + id +
-                ", personalData=" + personalData +
-                ", email='" + email + '\'' +
-                ", correspondenceAddress=" + correspondenceAddress +
-                ", classes=" + classes +
-                ", isActive=" + isActive +
-                '}';
-    }
 }

@@ -51,7 +51,7 @@ public class StudentServiceImpl implements StudentService<StudentDto, StudentEnt
     @Override
     public StudentDto create(@RequestBody StudentDto studentDto) {
         StudentEntity student = convertToEntity(studentDto);
-        return convertToDto(studentRepository.save(new StudentEntity(student.getId(), student.getPersonalData(), student.getEmail(), student.getCorrespondenceAddress(), student.getCollegeId(), student.getYearOfStudy(), student.getStudentsGroup(), student.getFieldsOfStudy(), student.getClasses(), student.getGrades(), student.isActive())));
+        return convertToDto(studentRepository.save(student));
     }
 
     @Override

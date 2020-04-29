@@ -47,7 +47,7 @@ public class TeacherServiceImpl implements TeacherService<TeacherDto, TeacherEnt
 
     public TeacherDto create(@RequestBody TeacherDto teacherDto) {
         TeacherEntity teacher = convertToEntity(teacherDto);
-        return convertToDto(teacherRepository.save(new TeacherEntity(teacher.getId(), teacher.getPersonalData(), teacher.getEmail(), teacher.getCorrespondenceAddress(), teacher.getClasses(), teacher.isActive())));
+        return convertToDto(teacherRepository.save(teacher));
     }
 
     public ResponseEntity<TeacherDto> updateById(@PathVariable("id") Long id, @RequestBody TeacherDto teacherDto) {

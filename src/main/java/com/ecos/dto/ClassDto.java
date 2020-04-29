@@ -1,19 +1,23 @@
 package com.ecos.dto;
 
+import com.ecos.dto.simple.AssignmentSimpleDto;
+import com.ecos.dto.simple.StudentSimpleDto;
+import com.ecos.dto.simple.TeacherSimpleDto;
+
 import java.util.List;
 
 public class ClassDto {
     private Long id;
     private String className;
-    private List<StudentDto> students;
-    private List<TeacherDto> teachers;
+    private List<StudentSimpleDto> students;
+    private List<TeacherSimpleDto> teachers;
     private FieldOfStudyDto fieldOfStudy;
-    private List<AssignmentDto> assignments;
+    private List<AssignmentSimpleDto> assignments;
 
     public ClassDto() {
     }
 
-    public ClassDto(Long id, String className, List<StudentDto> students, List<TeacherDto> teachers, FieldOfStudyDto fieldOfStudy, List<AssignmentDto> assignments) {
+    public ClassDto(Long id, String className, List<StudentSimpleDto> students, List<TeacherSimpleDto> teachers, FieldOfStudyDto fieldOfStudy, List<AssignmentSimpleDto> assignments) {
         this.id = id;
         this.className = className;
         this.students = students;
@@ -38,19 +42,19 @@ public class ClassDto {
         this.className = className;
     }
 
-    public List<StudentDto> getStudents() {
+    public List<StudentSimpleDto> getStudents() {
         return students;
     }
 
-    public void setStudents(List<StudentDto> students) {
+    public void setStudents(List<StudentSimpleDto> students) {
         this.students = students;
     }
 
-    public List<TeacherDto> getTeachers() {
+    public List<TeacherSimpleDto> getTeachers() {
         return teachers;
     }
 
-    public void setTeachers(List<TeacherDto> teachers) {
+    public void setTeachers(List<TeacherSimpleDto> teachers) {
         this.teachers = teachers;
     }
 
@@ -62,23 +66,12 @@ public class ClassDto {
         this.fieldOfStudy = fieldOfStudy;
     }
 
-    public List<AssignmentDto> getAssignments() {
+    public List<AssignmentSimpleDto> getAssignments() {
         return assignments;
     }
 
-    public void setAssignments(List<AssignmentDto> assignments) {
+    public void setAssignments(List<AssignmentSimpleDto> assignments) {
         this.assignments = assignments;
     }
 
-    @Override
-    public String toString() {
-        return "ClassDto{" +
-                "id=" + id +
-                ", className='" + className + '\'' +
-                ", students=" + students +
-                ", teachers=" + teachers +
-                ", fieldOfStudy=" + fieldOfStudy +
-                ", assignments=" + assignments +
-                '}';
-    }
 }

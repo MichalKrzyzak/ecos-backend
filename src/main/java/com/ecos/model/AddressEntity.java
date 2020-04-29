@@ -84,15 +84,4 @@ public class AddressEntity {
         this.zipCode = zipCode;
     }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "addressLine1='" + correspondence_street + '\'' +
-                ", addressLine2='" + correspondence_house_number + '\'' +
-                ", addressLine3='" + correspondence_apartment_number + '\'' +
-                ", city='" + city + '\'' +
-                ", voivodeship='" + voivodeship + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                '}';
-    }
 }

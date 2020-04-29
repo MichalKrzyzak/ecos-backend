@@ -82,16 +82,4 @@ public class ClassEntity {
         this.assignments = assignments;
     }
 
-    @Override
-    public String toString() {
-        return "ClassEntity{" +
-                "id=" + id +
-                ", className='" + className + '\'' +
-                ", students=" + students +
-                ", teachers=" + teachers +
-                ", fieldOfStudy=" + fieldOfStudy +
-                ", assignments=" + assignments +
-                '}';
-    }
-
 }

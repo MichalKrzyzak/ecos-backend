@@ -1,9 +1,9 @@
 package com.ecos.dto;
 
 public class AddressDto {
-    private String addressLine1;
-    private String addressLine2;
-    private String addressLine3;
+    private String correspondence_street;
+    private String correspondence_house_number;
+    private String correspondence_apartment_number;
     private String city;
     private String voivodeship;
     private String zipCode;
@@ -11,37 +11,37 @@ public class AddressDto {
     public AddressDto() {
     }
 
-    public AddressDto(String addressLine1, String addressLine2, String addressLine3, String city, String voivodeship, String zipCode) {
-        this.addressLine1 = addressLine1;
-        this.addressLine2 = addressLine2;
-        this.addressLine3 = addressLine3;
+    public AddressDto(String correspondence_street, String correspondence_house_number, String correspondence_apartment_number, String city, String voivodeship, String zipCode) {
+        this.correspondence_street = correspondence_street;
+        this.correspondence_house_number = correspondence_house_number;
+        this.correspondence_apartment_number = correspondence_apartment_number;
         this.city = city;
         this.voivodeship = voivodeship;
         this.zipCode = zipCode;
     }
 
-    public String getAddressLine1() {
-        return addressLine1;
+    public String getCorrespondence_street() {
+        return correspondence_street;
     }
 
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
+    public void setCorrespondence_street(String correspondence_street) {
+        this.correspondence_street = correspondence_street;
     }
 
-    public String getAddressLine2() {
-        return addressLine2;
+    public String getCorrespondence_house_number() {
+        return correspondence_house_number;
     }
 
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
+    public void setCorrespondence_house_number(String correspondence_house_number) {
+        this.correspondence_house_number = correspondence_house_number;
     }
 
-    public String getAddressLine3() {
-        return addressLine3;
+    public String getCorrespondence_apartment_number() {
+        return correspondence_apartment_number;
     }
 
-    public void setAddressLine3(String addressLine3) {
-        this.addressLine3 = addressLine3;
+    public void setCorrespondence_apartment_number(String correspondence_apartment_number) {
+        this.correspondence_apartment_number = correspondence_apartment_number;
     }
 
     public String getCity() {
@@ -68,15 +68,4 @@ public class AddressDto {
         this.zipCode = zipCode;
     }
 
-    @Override
-    public String toString() {
-        return "AddressDto{" +
-                "addressLine1='" + addressLine1 + '\'' +
-                ", addressLine2='" + addressLine2 + '\'' +
-                ", addressLine3='" + addressLine3 + '\'' +
-                ", city='" + city + '\'' +
-                ", voivodeship='" + voivodeship + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                '}';
-    }
 }

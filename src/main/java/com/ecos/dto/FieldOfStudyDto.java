@@ -1,17 +1,19 @@
 package com.ecos.dto;
 
+import com.ecos.dto.simple.ClassSimpleDto;
+
 import java.util.List;
 
 public class FieldOfStudyDto {
     private Long id;
     private String fieldOfStudy;
     private List<StudentDto> students;
-    private List<ClassDto> classes;
+    private List<ClassSimpleDto> classes;
 
     public FieldOfStudyDto() {
     }
 
-    public FieldOfStudyDto(Long id, String fieldOfStudy, List<StudentDto> students, List<ClassDto> classes) {
+    public FieldOfStudyDto(Long id, String fieldOfStudy, List<StudentDto> students, List<ClassSimpleDto> classes) {
         this.id = id;
         this.fieldOfStudy = fieldOfStudy;
         this.students = students;
@@ -42,21 +44,12 @@ public class FieldOfStudyDto {
         this.students = students;
     }
 
-    public List<ClassDto> getClasses() {
+    public List<ClassSimpleDto> getClasses() {
         return classes;
     }
 
-    public void setClasses(List<ClassDto> classes) {
+    public void setClasses(List<ClassSimpleDto> classes) {
         this.classes = classes;
     }
 
-    @Override
-    public String toString() {
-        return "FieldOfStudyDto{" +
-                "id=" + id +
-                ", fieldOfStudy='" + fieldOfStudy + '\'' +
-                ", students=" + students +
-                ", classes=" + classes +
-                '}';
-    }
 }
